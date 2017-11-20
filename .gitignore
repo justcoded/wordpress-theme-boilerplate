@@ -1,0 +1,38 @@
+# install scripts
+init_wp
+wp-host-update*
+
+# editor
+/nbproject/private/
+/nbproject/
+.project
+
+# composer
+composer.lock
+/vendor/
+/cms/
+
+# svn
+.svn
+
+# Ignore Mac DS_Store files
+.DS_Store
+._*
+node_modules/
+
+# linux backup files
+*~
+
+# markup
+.sass-cache
+node_modules
+*.map
+*.tmp
+*.psd
+*.ai
+*.zip
+*.tgz
+*.tar
+*.rar
+
+

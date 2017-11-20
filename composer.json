@@ -1,0 +1,31 @@
+{
+  "name": "justcoded/wordpress-theme-boilerplate",
+  "type": "library",
+  "license": "MIT",
+  "description": "WordPress theme boilerplate with better code structure and OOP support.",
+  "authors": [
+    {
+      "name": "Alex Prokopenko",
+      "email": "aprokopenko@justcoded.com",
+      "homepage": "https://github.com/justcoded"
+    }
+  ],
+  "keywords": [
+    "justcoded",
+    "wordpress",
+    "composer",
+    "wordpress theme",
+    "theme boilerplate",
+    "wp",
+    "wp theme"
+  ],
+  "support": {
+    "issues": "https://github.com/justcoded/wordpress-theme-boilerplate/issues"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "require": {
+    "php": ">=7.0"
+  }
+}

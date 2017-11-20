@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+Order allow,deny
+Allow from all
+</IfModule>

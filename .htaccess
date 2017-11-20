@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+
+Options All -Indexes
+Order deny,allow
+Deny from all
+
+<Files screenshot.png>
+	Allow from all
+	Satisfy any
+</Files>
+<Files style.css>
+	Allow from all
+	Satisfy any
+</Files>
+
+</IfModule>
