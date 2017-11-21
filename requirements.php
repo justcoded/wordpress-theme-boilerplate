@@ -5,15 +5,12 @@
  * This script is meant to be used with your Just Theme Framework-dependent theme or plugin,
  * so that your theme/plugin can verify whether the framework is installed.
  *
- * If JTH is not installed, then the script will display a notice with a link to
- * download. If JTH is installed but not activated, it will display the appropriate notice as well.
- *
- * Also the Just Theme Framework plugin requires Titan Framework plugin to be installed.
- * Appropriate notices will be printed if no plugin is found or plugin is not activated.
+ * If framework is not installed, then the script will display a notice with a link to
+ * download. If it is installed but not activated, it will display the appropriate notice as well.
  *
  * To use this script, just copy it into your theme/plugin directory then add this in the main file of your project:
  *
- * require_once( 'just-theme-framework-checker.php' );
+ * require_once( 'requirements.php' );
  *
  * @version 1.0
  *
@@ -36,6 +33,11 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 	class Just_Theme_Framework_Checker {
 
 		/**
+		 * Refers to a single instance of this class.
+		 */
+		private static $instance = null;
+
+		/**
 		 * Required plugins settings.
 		 *
 		 * @var array
@@ -45,7 +47,7 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 				'Just Theme Framework',
 				'//wordpress.org/plugins/just-theme-framework',
 			),
-			'titan-framework/titan-framework.php'           => array(
+			'titan-framework/titan-framework.php' => array(
 				'Titan Framework',
 				'//wordpress.org/plugins/titan-framework',
 			),
@@ -58,14 +60,25 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 		 *
 		 * @throws Exception Show public fatal error if requirements are not met.
 		 */
-		public function __construct() {
-
+		private function __construct() {
 			global $pagenow;
-			if ( ! is_admin() &&  'wp-login.php' !== $pagenow && ! $this->check_requirements() ) {
+			if ( ! is_admin() && 'wp-login.php' !== $pagenow && ! $this->check_requirements() ) {
 				throw new Exception( 'Your theme requires Just Theme Framework and Titan Framework plugins to be installed and activated.' );
 			}
 			add_action( 'admin_notices', array( $this, 'display_requirements_admin_notice' ) );
+		}
 
+		/**
+		 * Returns the *Singleton* instance of this class.
+		 *
+		 * @return Just_Theme_Framework_Checker A single instance of this class.
+		 */
+		public static function single() {
+			if ( null === static::$instance ) {
+				static::$instance = new static();
+			}
+
+			return static::$instance;
 		}
 
 		/**
@@ -114,5 +127,5 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 		}
 	}
 
-	$_jtf_checker = new Just_Theme_Framework_Checker();
+	Just_Theme_Framework_Checker::single();
 } // End if().
