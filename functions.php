@@ -6,8 +6,8 @@
 /**
  * We need to check that required plugins are active and installed
  */
-require_once get_template_directory() . '/just-theme-framework-checker.php';
-if ( ! $_jtf_checker->check_requirements() ) {
+require_once get_template_directory() . '/requirements.php';
+if ( ! Just_Theme_Framework_Checker::single()->check_requirements() ) {
 	// terminate if titan plugin is not activated.
 	return;
 }

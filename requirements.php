@@ -44,10 +44,12 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 		 */
 		private $required_plugins = array(
 			'just-theme-framework/just-theme-framework.php' => array(
+				'\JustCoded\WP\Framework\Autoload',
 				'Just Theme Framework',
 				'//wordpress.org/plugins/just-theme-framework',
 			),
 			'titan-framework/titan-framework.php' => array(
+				'\TitanFrameworkPlugin',
 				'Titan Framework',
 				'//wordpress.org/plugins/titan-framework',
 			),
@@ -88,7 +90,7 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 		 */
 		public function check_requirements() {
 			foreach ( $this->required_plugins as $plugin_file => $plugin_details ) {
-				if ( ! is_plugin_active( $plugin_file ) ) {
+				if ( ! class_exists( $plugin_details[0] ) && ! is_plugin_active( $plugin_file ) ) {
 					return false;
 				}
 			}
@@ -111,12 +113,12 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 
 				if ( ! is_file( $plugin_path ) ) {
 					$warnings[] = sprintf( '<strong>%s</strong> plugin should be installed. <a href="%s" target="_blank">Download plugin &raquo;</a>',
-						esc_html( $plugin_details[0] ),
-						esc_attr( $plugin_details[1] )
+						esc_html( $plugin_details[1] ),
+						esc_attr( $plugin_details[2] )
 					);
 				} elseif ( ! is_plugin_active( $plugin_file ) ) {
 					$warnings[] = sprintf( '<strong>%s</strong> plugin should be activated. <a href="%s">Manage Plugins &raquo;</a>',
-						esc_html( $plugin_details[0] ),
+						esc_html( $plugin_details[1] ),
 						esc_attr( admin_url( 'plugins.php' ) )
 					);
 				}
