@@ -7,7 +7,7 @@
 		<?php the_content(); ?>
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', '_jmvt' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'boilerplate' ),
 				'after'  => '</div>',
 			) );
 		?>
@@ -18,7 +18,7 @@
 			edit_post_link(
 				sprintf(
 					/* translators: %s: Name of current post */
-					esc_html__( 'Edit %s', '_jmvt' ),
+					esc_html__( 'Edit %s', 'boilerplate' ),
 					the_title( '<span class="screen-reader-text">"', '"</span>', false )
 				),
 				'<span class="edit-link">',

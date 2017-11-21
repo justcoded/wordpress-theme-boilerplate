@@ -2,8 +2,6 @@
 /**
  * Example of custom taxonomy and it's archive
  * Delete if you don't have any
- *
- * @package   _jmvt_name
  */
 
 namespace Boilerplate\Theme\Taxonomy;
@@ -36,7 +34,7 @@ class Example extends Taxonomy {
 	public function init() {
 		$this->label_singular = 'Some Taxo';
 		$this->label_multiple = 'Some Taxo\'s';
-		$this->textdomain     = '_jmvt';
+		$this->textdomain     = 'boilerplate';
 
 		$this->is_hierarchical  = false;
 		$this->has_single       = true;

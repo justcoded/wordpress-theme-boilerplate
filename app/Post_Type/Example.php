@@ -25,7 +25,7 @@ class Example extends \JustCoded\WP\Framework\Objects\Post_Type {
 	public function init() {
 		$this->label_singular = 'Example Content';
 		$this->label_multiple = 'Example Contents';
-		$this->textdomain = '_jmvt';
+		$this->textdomain = 'boilerplate';
 
 		$this->has_single       = true;
 		$this->is_searchable    = true;

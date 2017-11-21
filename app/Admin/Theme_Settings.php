@@ -14,7 +14,7 @@ class Theme_Settings extends \JustCoded\WP\Framework\Admin\Theme_Settings {
 
 		$panel = self::$tf->createContainer( array(
 			'type' => 'admin-page',
-			'name' => '_jmvt_name Options',
+			'name' => 'Theme Options',
 		) );
 
 		$this->add_panel_tabs( $panel, array(
@@ -101,14 +101,14 @@ class Theme_Settings extends \JustCoded\WP\Framework\Admin\Theme_Settings {
 			'name'    => 'Title',
 			'id'      => '404_title',
 			'type'    => 'text',
-			'default' => __( 'Oops! That page can&rsquo;t be found.', '_jmvt' ),
+			'default' => __( 'Oops! That page can&rsquo;t be found.', 'boilerplate' ),
 		) );
 
 		$tab->createOption( array(
 			'name'    => 'Content',
 			'id'      => '404_content',
 			'type'    => 'editor',
-			'default' => __( 'It looks like nothing was found at this location. Maybe try one of the links in menu or a search?', '_jmvt' ),
+			'default' => __( 'It looks like nothing was found at this location. Maybe try one of the links in menu or a search?', 'boilerplate' ),
 		) );
 
 		$tab->createOption( array(
