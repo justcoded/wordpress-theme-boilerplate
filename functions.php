@@ -1,6 +1,6 @@
 <?php
 /**
- * _jmvt_name functions and definitions.
+ * JustCoded Theme Boilerplate functions and definitions.
  */
 
 /**

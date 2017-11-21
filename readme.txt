@@ -1,4 +1,4 @@
-=== _jmvt ===
+=== General ===
 
 Contributors: justcoded
 Requires at least: 4.7

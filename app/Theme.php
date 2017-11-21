@@ -72,7 +72,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'primary' => esc_html__( 'Primary Menu', '_jmvt' ),
+			'primary' => esc_html__( 'Primary Menu', 'boilerplate' ),
 		) );
 	}
 
@@ -83,7 +83,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_sidebars() {
 		register_sidebar( array(
-			'name'          => esc_html__( 'Sidebar', '_jmvt' ),
+			'name'          => esc_html__( 'Sidebar', 'boilerplate' ),
 			'id'            => 'sidebar-1',
 			'description'   => '',
 			'before_widget' => '<aside id="%1$s" class="widget %2$s">',

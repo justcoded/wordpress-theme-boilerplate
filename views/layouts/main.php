@@ -7,7 +7,7 @@ use \JustCoded\WP\Framework\Web\View;
 
 View::layout_open( 'html' ); ?>
 
-<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', '_jmvt' ); ?></a>
+<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'boilerplate' ); ?></a>
 
 <?php View::render( 'partials/header' ); ?>
 

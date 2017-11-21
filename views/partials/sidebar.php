@@ -1,8 +1,6 @@
 <?php
 /**
  * Example of layout sidebar (which is present on almost all pages)
- *
- * @package   _jmvt_name
  */
 
 if ( is_active_sidebar( 'sidebar-1' ) ) : ?>

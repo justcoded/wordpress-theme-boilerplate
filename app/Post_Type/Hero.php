@@ -27,7 +27,7 @@ class Hero extends Post_Type {
 	public function init() {
 		$this->label_singular = 'Hero post';
 		$this->label_multiple = 'Hero posts';
-		$this->textdomain = '_jmvt';
+		$this->textdomain = 'boilerplate';
 
 		$this->has_single    = false;
 		$this->is_searchable = false;

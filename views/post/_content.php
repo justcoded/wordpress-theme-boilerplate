@@ -4,7 +4,7 @@
 
 		<?php if ( 'post' === get_post_type() ) : ?>
 		<div class="entry-meta">
-			<?php _jmvt_posted_on(); ?>
+			<?php boilerplate_posted_on(); ?>
 		</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
@@ -13,14 +13,14 @@
 		<?php
 			/* translators: %s: Name of current post */
 			the_content( sprintf(
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', '_jmvt' ),
+				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'boilerplate' ),
 				get_the_title()
 			) );
 		?>
 
 		<?php
 			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', '_jmvt' ),
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'boilerplate' ),
 				'after'  => '</div>',
 			) );
 		?>
