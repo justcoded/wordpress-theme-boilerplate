@@ -31,7 +31,9 @@ class Hero extends Post_Type {
 
 		$this->has_single    = false;
 		$this->is_searchable = false;
-		$this->redirect      = home_url();
+		// redirect is commented - to hide view link on the admin panel
+		// do this if has_single == false
+		//$this->redirect      = home_url();
 
 		$this->admin_menu_pos  = 25;
 		$this->admin_menu_icon = 'dashicons-screenoptions';
