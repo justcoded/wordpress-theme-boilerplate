@@ -43,10 +43,10 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 		 * @var array
 		 */
 		private $required_plugins = array(
-			'just-theme-framework/just-theme-framework.php' => array(
+			'wordpress-theme-framework/wordpress-theme-framework.php' => array(
 				'\JustCoded\WP\Framework\Autoload',
-				'Just Theme Framework',
-				'//wordpress.org/plugins/just-theme-framework',
+				'WordPress Theme Framework',
+				'https://github.com/justcoded/wordpress-theme-framework',
 			),
 			'titan-framework/titan-framework.php' => array(
 				'\TitanFrameworkPlugin',
