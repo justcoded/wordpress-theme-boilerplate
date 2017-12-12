@@ -10,7 +10,7 @@
 
 use JustCoded\WP\Framework\Web\View;
 
-View::extends('main');
+View::extends( 'layouts/main' );
 ?>
 
 <?php while ( have_posts() ) : the_post(); ?>

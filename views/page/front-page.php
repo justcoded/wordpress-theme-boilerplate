@@ -5,10 +5,10 @@
 
 use JustCoded\WP\Framework\Web\View;
 use Boilerplate\Theme\Models\Homepage;
-View::extends('main');
+
+View::extends( 'layouts/main' );
 
 $model = new Homepage();
-
 ?>
 
 

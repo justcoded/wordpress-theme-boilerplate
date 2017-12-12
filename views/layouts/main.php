@@ -5,7 +5,8 @@
  */
 use \JustCoded\WP\Framework\Web\View;
 
-View::extends( 'html' ); ?>
+View::extends( 'layouts/html' );
+?>
 
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'boilerplate' ); ?></a>
 
