@@ -2,24 +2,24 @@
 namespace Boilerplate\Theme\Page_Builder\Widget;
 
 /**
- * Class Hero_Layout
+ * Class Employee_Layout
  *
  * @package Boilerplate\Theme\Page_Builder\Widget
  */
-class Hero_Layout extends \JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_Widget_Layout {
+class Employee_Layout extends \JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_Widget_Layout {
 	/**
 	 * ID
 	 *
 	 * @var string
 	 */
-	public static $ID = 'hero-widget';
+	public static $ID = 'employee-widget';
 
 	/**
 	 * Display name
 	 *
 	 * @var string
 	 */
-	public static $TITLE = 'Hero size';
+	public static $TITLE = 'Employee size';
 
 	/**
 	 * Image size for background image in case of RWD plugin enabled.
@@ -35,8 +35,8 @@ class Hero_Layout extends \JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_W
 	 */
 	public function options() {
 		return array(
-			'hero_size' => array(
-				'name'     => 'Hero size',
+			'employee_size' => array(
+				'name'     => 'Employee size',
 				'type'     => 'select',
 				'group'    => 'layout',
 				'options'  => array(
@@ -72,7 +72,7 @@ class Hero_Layout extends \JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_W
 	 * @return array
 	 */
 	public function widget_inner_classes( array $classes, $style_data, $widget, $instance ) {
-		$classes[] = ' widget-hero';
+		$classes[] = ' widget-employee';
 
 		return $classes;
 	}

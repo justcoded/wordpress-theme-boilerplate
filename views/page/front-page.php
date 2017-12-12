@@ -10,12 +10,6 @@ $model = new Homepage();
 
 View::layout_open(); ?>
 
-	<section id="hero">
-		<?php while ( $model->hero_query->have_posts() ) : $model->hero_query->the_post(); ?>
-			<?php View::render( 'page/_front-hero' ); ?>
-		<?php endwhile; ?>
-	</section>
-
 	<?php while ( have_posts() ) : the_post(); ?>
 
 		<?php View::render( 'page/_content', array(

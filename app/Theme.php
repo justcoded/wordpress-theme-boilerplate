@@ -118,7 +118,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Register post types
 	 */
 	public function register_post_types() {
-		new \Boilerplate\Theme\Post_Type\Hero();
 		new \Boilerplate\Theme\Post_Type\Example();
 	}
 
