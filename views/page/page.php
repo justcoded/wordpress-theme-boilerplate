@@ -10,12 +10,11 @@
 
 use JustCoded\WP\Framework\Web\View;
 
-View::layout_open(); ?>
+View::extends('main');
+?>
 
-	<?php while ( have_posts() ) : the_post(); ?>
+<?php while ( have_posts() ) : the_post(); ?>
 
-		<?php View::render( 'page/_content' ); ?>
+	<?php View::render( 'page/_content' ); ?>
 
-	<?php endwhile; ?>
-
-<?php View::layout_close();
+<?php endwhile; ?>

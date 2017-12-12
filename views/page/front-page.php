@@ -5,10 +5,12 @@
 
 use JustCoded\WP\Framework\Web\View;
 use Boilerplate\Theme\Models\Homepage;
+View::extends('main');
 
 $model = new Homepage();
 
-View::layout_open(); ?>
+?>
+
 
 	<section id="hero">
 		<?php while ( $model->hero_query->have_posts() ) : $model->hero_query->the_post(); ?>
@@ -30,4 +32,3 @@ View::layout_open(); ?>
 		</aside>
 	<?php endif; ?>
 
-<?php View::layout_close(); ?>

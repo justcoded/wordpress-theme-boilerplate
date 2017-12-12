@@ -5,7 +5,7 @@
  */
 use \JustCoded\WP\Framework\Web\View;
 
-View::layout_open( 'html' ); ?>
+View::extends( 'html' ); ?>
 
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'boilerplate' ); ?></a>
 
@@ -26,5 +26,3 @@ View::layout_open( 'html' ); ?>
 	</div><!-- #content -->
 
 <?php View::render( 'partials/footer' ); ?>
-
-<?php View::layout_close();

@@ -1,9 +1,11 @@
 <?php
 /**
  * Main template in WordPress theme.
- * It isn't used in MVC structure, however it's mandatory
+ * Used to load views engine
  *
  * @see /views/ folder instead
+ * @var $template \JustCoded\WP\Framework\Web\View
  */
 
-die( 'Silence is golden!' );
+$template->include_template();
+
