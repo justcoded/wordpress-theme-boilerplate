@@ -5,7 +5,7 @@
 
 use JustCoded\WP\Framework\Web\View;
 
-View::layout_open(); ?>
+View::extends( 'layouts/main' ); ?>
 
 	<h1>Our blog</h1>
 
@@ -16,5 +16,3 @@ View::layout_open(); ?>
 	<?php endwhile; // End of the loop. ?>
 
 	<?php the_posts_navigation(); ?>
-
-<?php View::layout_close(); ?>

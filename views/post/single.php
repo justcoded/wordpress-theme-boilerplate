@@ -5,7 +5,7 @@
 
 use JustCoded\WP\Framework\Web\View;
 
-View::layout_open(); ?>
+View::extends( 'layouts/main' ); ?>
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
@@ -21,5 +21,3 @@ View::layout_open(); ?>
 		?>
 
 	<?php endwhile; // End of the loop. ?>
-
-<?php View::layout_close();

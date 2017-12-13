@@ -6,7 +6,7 @@ use JustCoded\WP\Framework\Web\View;
 
 $model = new Boilerplate\Theme\Models\Cpt_Example();
 
-View::layout_open(); ?>
+View::extends( 'layouts/main' ); ?>
 
 <h1>Cpt Example Archive Intro</h1>
 <?php while ( have_posts() ) : the_post(); ?>
@@ -33,5 +33,3 @@ View::layout_open(); ?>
 	</nav>
 <?php endif; ?>
 <?php wp_reset_postdata(); ?>
-
-<?php View::layout_close();
