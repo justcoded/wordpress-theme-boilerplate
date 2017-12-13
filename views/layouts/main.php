@@ -3,14 +3,16 @@
  * Main layout loaded by default
  * Extended from "html" layout
  */
-use \JustCoded\WP\Framework\Web\View;
 
-View::extends( 'layouts/html' );
+/* @var \JustCoded\WP\Framework\Web\View $this */
+
+$this->extends( 'layouts/html' );
+
 ?>
 
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'boilerplate' ); ?></a>
 
-<?php View::render( 'partials/header' ); ?>
+<?php $this->render( 'partials/header' ); ?>
 
 	<div id="content" class="site-content">
 
@@ -19,11 +21,11 @@ View::extends( 'layouts/html' );
 
 				<?php echo $content; ?>
 
-				<?php View::render( 'partials/sidebar' ); ?>
+				<?php $this->render( 'partials/sidebar' ); ?>
 
 			</main><!-- #main -->
 		</div><!-- #primary -->
 
 	</div><!-- #content -->
 
-<?php View::render( 'partials/footer' ); ?>
+<?php $this->render( 'partials/footer' ); ?>
