@@ -10,8 +10,6 @@
 
 use JustCoded\WP\Framework\Web\View;
 
-View::layout_open(); ?>
+View::extends( 'layouts/main' ); ?>
 
 <?php woocommerce_content(); ?>
-
-<?php View::layout_close();

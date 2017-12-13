@@ -6,7 +6,7 @@
 use JustCoded\WP\Framework\Web\View;
 use Boilerplate\Theme\Admin\Theme_Settings;
 
-View::layout_open();
+View::extends( 'layouts/main' );
 
 $title   = Theme_Settings::get( '404_title' );
 $content = Theme_Settings::get( '404_content' );
@@ -23,5 +23,3 @@ $content = Theme_Settings::get( '404_content' );
 		<?php get_search_form(); ?>
 	</div><!-- .page-content -->
 </section><!-- .error-404 -->
-
-<?php View::layout_close();

@@ -5,7 +5,7 @@
 
 use JustCoded\WP\Framework\Web\View;
 
-View::layout_open(); ?>
+View::extends( 'layouts/main' ); ?>
 
 	<h1>This is an example of custom post type single template</h1>
 	<?php while ( have_posts() ) : the_post(); ?>
@@ -15,5 +15,3 @@ View::layout_open(); ?>
 		) ); ?>
 
 	<?php endwhile; // End of the loop. ?>
-
-<?php View::layout_close();

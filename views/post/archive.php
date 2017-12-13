@@ -5,7 +5,7 @@
 
 use JustCoded\WP\Framework\Web\View;
 
-View::layout_open(); ?>
+View::extends( 'layouts/main' ); ?>
 
 	<?php if ( have_posts() ) : ?>
 
@@ -30,5 +30,3 @@ View::layout_open(); ?>
 		<?php View::render( 'search/_nothing' ); ?>
 
 	<?php endif; ?>
-
-<?php View::layout_close(); ?>
