@@ -8,8 +8,8 @@
  * different template.
  */
 
-use JustCoded\WP\Framework\Web\View;
+/* @var \JustCoded\WP\Framework\Web\View $this */
 
-View::extends( 'layouts/main' ); ?>
+$this->extends( 'layouts/main' ); ?>
 
 <?php woocommerce_content(); ?>

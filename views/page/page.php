@@ -8,13 +8,13 @@
  * different template.
  */
 
-use JustCoded\WP\Framework\Web\View;
+/* @var \JustCoded\WP\Framework\Web\View $this */
 
-View::extends( 'layouts/main' );
+$this->extends( 'layouts/main' );
 ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<?php View::render( 'page/_content' ); ?>
+	<?php $this->render( 'page/_content' ); ?>
 
 <?php endwhile; ?>

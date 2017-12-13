@@ -3,9 +3,9 @@
  * The template for displaying search results pages.
  */
 
-use JustCoded\WP\Framework\Web\View;
+/* @var \JustCoded\WP\Framework\Web\View $this */
 
-View::extends( 'layouts/main' ); ?>
+$this->extends( 'layouts/main' ); ?>
 
 	<?php if ( have_posts() ) : ?>
 
@@ -16,7 +16,7 @@ View::extends( 'layouts/main' ); ?>
 		<?php /* Start the Loop */ ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php View::render( 'search/_item' ); ?>
+			<?php $this->render( 'search/_item' ); ?>
 
 		<?php endwhile; ?>
 
@@ -24,6 +24,6 @@ View::extends( 'layouts/main' ); ?>
 
 	<?php else : ?>
 
-		<?php View::render( 'search/_nothing' ); ?>
+		<?php $this->render( 'search/_nothing' ); ?>
 
 	<?php endif; ?>
