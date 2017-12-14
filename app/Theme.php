@@ -133,7 +133,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_widgets() {
 		if ( SiteOrigin_Panels::widgets_bundle_active() ) {
-			register_widget( '\Boilerplate\Theme\Widgets\Image_Widget' );
+			register_widget( '\Boilerplate\Theme\Widgets\Hero_Slider_Widget' );
 		}
 	}
 
