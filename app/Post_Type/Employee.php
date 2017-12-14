@@ -2,29 +2,29 @@
 namespace Boilerplate\Theme\Post_Type;
 
 /**
- * Custom post type to illustrate single/archive features
+ * Custom post type Employee to illustrate single/archive features
  */
-class Example extends \JustCoded\WP\Framework\Objects\Post_Type {
+class Employee extends \JustCoded\WP\Framework\Objects\Post_Type {
 	/**
 	 * ID
 	 *
 	 * @var string
 	 */
-	public static $ID = 'cpt_example';
+	public static $ID = 'employee';
 
 	/**
 	 * Rewrite URL part
 	 *
 	 * @var string
 	 */
-	public static $SLUG = 'my-content';
+	public static $SLUG = 'employee';
 
 	/**
 	 * Registration function
 	 */
 	public function init() {
-		$this->label_singular = 'Example Content';
-		$this->label_multiple = 'Example Contents';
+		$this->label_singular = 'Employee';
+		$this->label_multiple = 'Employee';
 		$this->textdomain = 'boilerplate';
 
 		$this->has_single       = true;
@@ -37,7 +37,7 @@ class Example extends \JustCoded\WP\Framework\Objects\Post_Type {
 		$this->admin_menu_icon = 'dashicons-format-gallery';
 
 		$this->taxonomies = array(
-			'category',
+			'department',
 		);
 
 		$this->register();

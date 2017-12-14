@@ -118,14 +118,14 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Register post types
 	 */
 	public function register_post_types() {
-		new \Boilerplate\Theme\Post_Type\Example();
+		new \Boilerplate\Theme\Post_Type\Employee();
 	}
 
 	/**
 	 * Register post types
 	 */
 	public function register_taxonomies() {
-		new \Boilerplate\Theme\Taxonomy\Example();
+		new \Boilerplate\Theme\Taxonomy\Department();
 	}
 
 	/**
