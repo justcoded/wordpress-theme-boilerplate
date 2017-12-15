@@ -7,11 +7,11 @@
 
 $this->extends( 'layouts/main' ); ?>
 
-	<h1>This is an example of custom post type single template</h1>
+	<h1><?php the_title(); ?></h1>
 	<?php while ( have_posts() ) : the_post(); ?>
 
-		<?php $this->render( 'cpt_example/_content', array(
-			'referer' => 'cpt_example-single',
+		<?php $this->render( 'employee/_content', array(
+			'referer' => 'employee-single',
 		) ); ?>
 
 	<?php endwhile; // End of the loop. ?>

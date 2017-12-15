@@ -9,19 +9,19 @@ use Boilerplate\Theme\Post_Type;
  *
  * @property \WP_Query $query
  */
-class Cpt_Example extends Model {
+class Employee extends Model {
 	/**
-	 * Get hero query to be used in home views in the loop
+	 * Get query to be used in views in the loop
 	 *
 	 * @return \WP_Query  query object to be used in loop
 	 */
 	public function get_query() {
 		return $this->archive_query( array(
-			'post_type'      => Post_Type\Example::$ID,
-			'post_status'    => Post_Type\Example::STATUS_PUBLISH,
-			'order'          => Post_Type\Example::SORT_DESC,
-			'orderby'        => Post_Type\Example::ORDERBY_DATE,
-			'posts_per_page' => 2,
+			'post_type'      => Post_Type\Employee::$ID,
+			'post_status'    => Post_Type\Employee::STATUS_PUBLISH,
+			'order'          => Post_Type\Employee::SORT_DESC,
+			'orderby'        => Post_Type\Employee::ORDERBY_DATE,
+			'posts_per_page' => 4,
 		), __METHOD__ );
 	}
 

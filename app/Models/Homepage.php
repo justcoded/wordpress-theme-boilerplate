@@ -2,7 +2,7 @@
 namespace Boilerplate\Theme\Models;
 
 use JustCoded\WP\Framework\Objects\Model;
-use Boilerplate\Theme\Post_Type\Hero;
+use Boilerplate\Theme\Post_Type\Employee;
 
 /**
  * Model to control data of the homepage
@@ -21,10 +21,11 @@ class Homepage extends Model {
 	 */
 	public function get_hero_query() {
 		return $this->wp_query( array(
-			'post_type'   => Hero::$ID,
-			'post_status' => Hero::STATUS_PUBLISH,
-			'order'       => Hero::SORT_ASC,
-			'orderby'     => Hero::ORDERBY_WEIGHT,
+			'post_type'      => Employee::$ID,
+			'post_status'    => Employee::STATUS_PUBLISH,
+			'order'          => Employee::SORT_DESC,
+			'orderby'        => Employee::ORDERBY_DATE,
+			'posts_per_page' => 4,
 		), __METHOD__ );
 	}
 

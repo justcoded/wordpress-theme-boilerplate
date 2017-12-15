@@ -19,7 +19,7 @@ $this->extends( 'layouts/main' ); ?>
 		<?php /* Start the Loop */ ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php $this->render( 'cpt_example/_content' ); ?>
+			<?php $this->render( 'employee/_content' ); ?>
 
 		<?php endwhile; ?>
 

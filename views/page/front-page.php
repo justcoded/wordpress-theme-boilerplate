@@ -12,20 +12,9 @@ $this->extends( 'layouts/main' );
 $model = new Homepage();
 ?>
 
-
-<section id="hero">
-	<?php while ( $model->hero_query->have_posts() ) : $model->hero_query->the_post(); ?>
-		<?php $this->render( 'page/_front-hero' ); ?>
-	<?php endwhile; ?>
-</section>
-
-<?php while ( have_posts() ) : the_post(); ?>
-
-	<?php $this->render( 'page/_content', array(
-			'headline' => $model->field_headline,
-	) ); ?>
-
-<?php endwhile; // End of the loop. ?>
+<?php while ( $model->hero_query->have_posts() ) : $model->hero_query->the_post(); ?>
+	<?php $this->render( 'page/_front-hero' ); ?>
+<?php endwhile; ?>
 
 <?php if ( is_active_sidebar( 'homepage-bottom' ) ) : ?>
 	<aside class="homepage-bottom widget-area" role="complementary">
