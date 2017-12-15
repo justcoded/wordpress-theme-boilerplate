@@ -11,7 +11,7 @@ use Boilerplate\Theme\Post_Type;
  */
 class Employee extends Model {
 	/**
-	 * Get query to be used in home views in the loop
+	 * Get query to be used in views in the loop
 	 *
 	 * @return \WP_Query  query object to be used in loop
 	 */
