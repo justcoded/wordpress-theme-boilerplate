@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying archive pages.
+ * Page Template: Employee
  */
 
 /* @var \JustCoded\WP\Framework\Web\View $this */
