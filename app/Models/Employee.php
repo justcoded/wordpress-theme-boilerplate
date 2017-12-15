@@ -15,7 +15,7 @@ class Employee extends Model {
 	 *
 	 * @return \WP_Query  query object to be used in loop
 	 */
-	public function get_post_employee() {
+	public function get_query() {
 		return $this->archive_query( array(
 			'post_type'      => Post_Type\Employee::$ID,
 			'post_status'    => Post_Type\Employee::STATUS_PUBLISH,

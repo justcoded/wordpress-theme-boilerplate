@@ -1,7 +1,5 @@
 <?php
-/**
- * Template Name: Employee Archive
- */
+/* Template Name: Employee Archive */
 
 $model = new Boilerplate\Theme\Models\Employee();
 
@@ -9,16 +7,13 @@ $model = new Boilerplate\Theme\Models\Employee();
 
 $this->extends( 'layouts/main' ); ?>
 
-<h1>Cpt Example Archive Intro</h1>
 <?php while ( have_posts() ) : the_post(); ?>
-
-	<?php $this->render( 'employee/_content', array(
+	<?php $this->render( 'page/_content', array(
 		'referer' => 'employee',
 	) ); ?>
 
 <?php endwhile; // End of the loop. ?>
 
-	<h1>Cpt Example Archive Loop</h1>
 <?php while ( $model->query->have_posts() ) : $model->query->the_post(); ?>
 	<?php $this->render( 'employee/_content' ); ?>
 <?php endwhile; ?>
