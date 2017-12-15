@@ -3,9 +3,9 @@
  * The template for displaying archive pages.
  */
 
-use JustCoded\WP\Framework\Web\View;
+/* @var \JustCoded\WP\Framework\Web\View $this */
 
-View::layout_open(); ?>
+$this->extends( 'layouts/main' ); ?>
 
 	<?php if ( have_posts() ) : ?>
 
@@ -19,7 +19,7 @@ View::layout_open(); ?>
 		<?php /* Start the Loop */ ?>
 		<?php while ( have_posts() ) : the_post(); ?>
 
-			<?php View::render( 'post/_content' ); ?>
+			<?php $this->render( 'post/_content' ); ?>
 
 		<?php endwhile; ?>
 
@@ -27,8 +27,6 @@ View::layout_open(); ?>
 
 	<?php else : ?>
 
-		<?php View::render( 'search/_nothing' ); ?>
+		<?php $this->render( 'search/_nothing' ); ?>
 
 	<?php endif; ?>
-
-<?php View::layout_close(); ?>

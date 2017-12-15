@@ -1,4 +1,4 @@
-<?php \JustCoded\WP\Framework\Web\View::footer_begin(); ?>
+<?php $this->footer_begin(); ?>
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<div class="site-info">
 		<?php

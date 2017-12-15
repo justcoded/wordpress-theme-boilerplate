@@ -3,10 +3,11 @@
  * The template for 404 Error not found.
  */
 
-use JustCoded\WP\Framework\Web\View;
 use Boilerplate\Theme\Admin\Theme_Settings;
 
-View::layout_open();
+/* @var \JustCoded\WP\Framework\Web\View $this */
+
+$this->extends( 'layouts/main' );
 
 $title   = Theme_Settings::get( '404_title' );
 $content = Theme_Settings::get( '404_content' );
@@ -23,5 +24,3 @@ $content = Theme_Settings::get( '404_content' );
 		<?php get_search_form(); ?>
 	</div><!-- .page-content -->
 </section><!-- .error-404 -->
-
-<?php View::layout_close();
