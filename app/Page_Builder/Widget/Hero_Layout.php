@@ -4,7 +4,7 @@ namespace Boilerplate\Theme\Page_Builder\Widget;
 /**
  * Class Hero_Layout
  *
- * @package WildStone\Theme\Page_Builder\Widget
+ * @package Boilerplate\Theme\Page_Builder\Widget
  */
 class Hero_Layout extends \JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_Widget_Layout {
 	/**
