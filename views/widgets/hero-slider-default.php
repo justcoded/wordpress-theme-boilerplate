@@ -1,8 +1,17 @@
 <?php
-/* @var $image string */
-/* @var $instance array */
+/* @var $instance array
+ *
+ * var $before_widget print:
+ * <div class="pb-widget pb-widget-num-2 widget_hero-slider" data-index="1" >
+ * <div class="pb-widget-inner" >
+ *
+ * var $after_widget print:
+ * </div></div>
+ *
+ */
 ?>
 
+<?php echo $before_widget; ?>
 <div class="fade-gallery paused">
 	<a href="#" class="btn-prev"><i class="icon-chevron-thin-left"></i></a>
 	<a href="#" class="btn-next"><i class="icon-chevron-thin-right"></i></a>
@@ -20,3 +29,4 @@
 		<?php endforeach; ?>
 	</ul>
 </div>
+<?php echo $after_widget; ?>

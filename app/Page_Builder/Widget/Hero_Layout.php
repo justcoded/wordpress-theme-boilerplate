@@ -1,5 +1,5 @@
 <?php
-namespace WildStone\Theme\Page_Builder\Widget;
+namespace Boilerplate\Theme\Page_Builder\Widget;
 
 /**
  * Class Hero_Layout

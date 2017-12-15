@@ -1,6 +1,7 @@
 <?php
 namespace Boilerplate\Theme\Post_Type;
 
+use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Objects\Post_Type;
 
 /**
@@ -39,7 +40,7 @@ class Employee extends Post_Type {
 		$this->admin_menu_icon = 'dashicons-format-gallery';
 
 		$this->taxonomies = array(
-			'department',
+			Department::$ID,
 		);
 
 		$this->register();

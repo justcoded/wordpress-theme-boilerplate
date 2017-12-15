@@ -12,9 +12,14 @@ use JustCoded\WP\Framework\Web\View;
 class Hero_Slider_Widget extends Page_Builder_Widget {
 
 	/**
-	 * Default slider type
+	 * Full slider type template name
 	 */
 	const TYPE_FULL = 'hero-slider-full';
+
+	/**
+	 * Default slider type template name
+	 */
+	const TYPE_DEFAULT = 'hero-slider-default';
 
 	/**
 	 * Hero_Slider_Widget constructor.
@@ -55,8 +60,8 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 			array(
 				'images'      => array(
 					'type'       => 'repeater',
-					'label'      => __( 'Images', 'wordpress-theme-boilerplate' ),
-					'item_name'  => __( 'Image', 'wordpress-theme-boilerplate' ),
+					'label'      => __( 'Images', 'boilerplate' ),
+					'item_name'  => __( 'Image', 'boilerplate' ),
 					'item_label' => array(
 						'selector'     => "[name*='title']",
 						'update_event' => 'change',
@@ -66,32 +71,32 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 					'fields' => array(
 						'image'       => array(
 							'type'  => 'media',
-							'label' => __( 'Image', 'wordpress-theme-boilerplate' ),
+							'label' => __( 'Image', 'boilerplate' ),
 						),
 						'title'       => array(
 							'type'  => 'text',
-							'label' => __( 'Image title', 'wordpress-theme-boilerplate' ),
+							'label' => __( 'Image title', 'boilerplate' ),
 						),
 						'description' => array(
 							'type'  => 'text',
-							'label' => __( 'Description', 'wordpress-theme-boilerplate' ),
+							'label' => __( 'Description', 'boilerplate' ),
 						),
 						'button_text'        => array(
 							'type'  => 'text',
-							'label' => __( 'Button text', 'wordpress-theme-boilerplate' ),
+							'label' => __( 'Button text', 'boilerplate' ),
 						),
 						'button_link'        => array(
 							'type'  => 'link',
-							'label' => __( 'Button link', 'wordpress-theme-boilerplate' ),
+							'label' => __( 'Button link', 'boilerplate' ),
 						),
 					),
 				),
 				'widget_type' => array(
 					'type'    => 'select',
-					'label'   => __( 'Choose widget type', 'wordpress-theme-boilerplate' ),
+					'label'   => __( 'Choose widget type', 'boilerplate' ),
 					'options' => array(
-						'hero-slider-default' => __( 'Default', 'wordpress-theme-boilerplate' ),
-						'hero-slider-full'       => __( 'Full width', 'wordpress-theme-boilerplate' ),
+						self::TYPE_DEFAULT => __( 'Default', 'boilerplate' ),
+						self::TYPE_FULL    => __( 'Full width', 'boilerplate' ),
 					),
 					'default' => 'full',
 				),
@@ -121,7 +126,11 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 		$instance = $this->get_template_variables( $instance, $args );
 		if ( ! empty( $instance['images'] ) ) {
 			$template = ( self::TYPE_FULL === $instance['widget_type'] ) ? 'hero-slider-full' : 'hero-slider-default';
-			View::instance()->render( 'widgets/' . $template, array( 'instance' => $instance ) );
+			View::instance()->render( 'widgets/' . $template, array(
+				'instance' => $instance,
+				'before_widget' => $args['before_widget'],
+				'after_widget' => $args['after_widget'],
+			) );
 		}
 	}
 }

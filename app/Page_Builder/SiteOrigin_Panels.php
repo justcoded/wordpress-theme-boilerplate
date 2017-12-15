@@ -41,5 +41,6 @@ class SiteOrigin_Panels extends Page_Builder_Loader {
 		$this->register_row_layout( 'Row\Wide_Layout' );
 
 		$this->register_widget_layout( '\JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_Widget_Layout', 'Default' );
+		$this->register_widget_layout( 'Widget\Hero_Layout' );
 	}
 }
