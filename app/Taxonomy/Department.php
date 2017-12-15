@@ -1,12 +1,13 @@
 <?php
 /**
- * Department of custom taxonomy and it's archive
+ * Example of custom taxonomy and it's archive
  * Delete if you don't have any
  */
 
 namespace Boilerplate\Theme\Taxonomy;
 
 use JustCoded\WP\Framework\Objects\Taxonomy;
+use Boilerplate\Theme\Post_Type\Employee;
 
 /**
  * Class Department Taxonomy
@@ -26,7 +27,7 @@ class Department extends Taxonomy {
 	 *
 	 * @var string
 	 */
-	public static $SLUG = 'tax-department';
+	public static $SLUG = 'department';
 
 	/**
 	 * Registration function
@@ -43,7 +44,7 @@ class Department extends Taxonomy {
 		$this->has_admin_menu = true;
 
 		$this->post_types = array(
-			\Boilerplate\Theme\Post_Type\Employee::$ID,
+			Employee::$ID,
 		);
 
 		$this->register();

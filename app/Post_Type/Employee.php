@@ -26,7 +26,7 @@ class Employee extends Post_Type {
 	 */
 	public function init() {
 		$this->label_singular = 'Employee';
-		$this->label_multiple = 'Employee';
+		$this->label_multiple = 'Employees';
 		$this->textdomain = 'boilerplate';
 
 		$this->has_single       = true;
