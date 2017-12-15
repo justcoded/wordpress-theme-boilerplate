@@ -1,9 +1,9 @@
 <?php
 /**
- * Template Name: CPT Example Archive
+ * Template Name: Employee Archive
  */
 
-$model = new Boilerplate\Theme\Models\Cpt_Example();
+$model = new Boilerplate\Theme\Models\Employee();
 
 /* @var \JustCoded\WP\Framework\Web\View $this */
 
@@ -12,15 +12,15 @@ $this->extends( 'layouts/main' ); ?>
 <h1>Cpt Example Archive Intro</h1>
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<?php $this->render( 'page/_content', array(
-		'referer' => 'cpt_example',
+	<?php $this->render( 'employee/_content', array(
+		'referer' => 'employee',
 	) ); ?>
 
 <?php endwhile; // End of the loop. ?>
 
 	<h1>Cpt Example Archive Loop</h1>
 <?php while ( $model->query->have_posts() ) : $model->query->the_post(); ?>
-	<?php $this->render( 'cpt_example/_content' ); ?>
+	<?php $this->render( 'employee/_content' ); ?>
 <?php endwhile; ?>
 
 <?php if ( $model->query->max_num_pages > 1 ) : // check if the max number of pages is greater than 1.  ?>
