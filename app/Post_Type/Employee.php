@@ -1,10 +1,12 @@
 <?php
 namespace Boilerplate\Theme\Post_Type;
 
+use JustCoded\WP\Framework\Objects\Post_Type;
+
 /**
  * Custom post type Employee to illustrate single/archive features
  */
-class Employee extends \JustCoded\WP\Framework\Objects\Post_Type {
+class Employee extends Post_Type {
 	/**
 	 * ID
 	 *

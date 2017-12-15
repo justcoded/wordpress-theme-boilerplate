@@ -106,7 +106,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 
 		// Scripts.
 		$this->register_assets_scripts( array(
-			'jquery.main.js'
+			'jquery.main.js',
 		), array( 'jquery' ) );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -118,14 +118,17 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Register post types
 	 */
 	public function register_post_types() {
-		new \Boilerplate\Theme\Post_Type\Employee();
+		\Boilerplate\Theme\Post_Type\Employee::instance();
+		\Boilerplate\Theme\Post_Type\Hero::instance();
+		\Boilerplate\Theme\Post_Type\Example::instance();
 	}
 
 	/**
 	 * Register post types
 	 */
 	public function register_taxonomies() {
-		new \Boilerplate\Theme\Taxonomy\Department();
+		\Boilerplate\Theme\Taxonomy\Department::instance();
+		\Boilerplate\Theme\Taxonomy\Example::instance();
 	}
 
 	/**
