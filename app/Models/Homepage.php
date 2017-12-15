@@ -7,7 +7,7 @@ use Boilerplate\Theme\Post_Type\Employee;
 /**
  * Model to control data of the homepage
  *
- * @property \WP_Query $post_query
+ * @property \WP_Query $hero_query
  *
  * Fields available through JCF:
  *
@@ -15,7 +15,7 @@ use Boilerplate\Theme\Post_Type\Employee;
  */
 class Homepage extends Model {
 	/**
-	 * Get post query to be used in home views in the loop
+	 * Get hero query to be used in home views in the loop
 	 *
 	 * @return \WP_Query  query object to be used in loop
 	 */
