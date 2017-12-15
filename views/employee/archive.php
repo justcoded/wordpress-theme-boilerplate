@@ -16,7 +16,7 @@ $model = new Employee();
 while ( $model->post_employee->have_posts() ) : $model->post_employee->the_post();
 	$model->set_post();
 	$this->render(
-		'post/_content',
+		'employee/_content',
 		array(
 			'model' => $model,
 		)
