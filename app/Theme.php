@@ -119,8 +119,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_post_types() {
 		\Boilerplate\Theme\Post_Type\Employee::instance();
-		\Boilerplate\Theme\Post_Type\Hero::instance();
-		\Boilerplate\Theme\Post_Type\Example::instance();
 	}
 
 	/**
@@ -128,7 +126,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_taxonomies() {
 		\Boilerplate\Theme\Taxonomy\Department::instance();
-		\Boilerplate\Theme\Taxonomy\Example::instance();
 	}
 
 	/**
