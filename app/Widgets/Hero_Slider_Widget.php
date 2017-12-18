@@ -27,9 +27,9 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 	function __construct() {
 		parent::__construct(
 			'hero-slider',
-			__( 'Slider image widget' ),
+			__( 'Hero Slider' ),
 			array(
-				'description' => __( 'Slider image widget.' ),
+				'description' => __( 'Hero Slider' ),
 				'has_preview' => false,
 			),
 			array(),

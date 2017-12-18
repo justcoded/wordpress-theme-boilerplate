@@ -23,6 +23,8 @@
 					<div class="description">
 						<p><?php echo esc_html( $one_image['title'] ); ?></p>
 						<div><?php echo $one_image['description']; ?></div>
+						<div><?php echo $one_image['button_text']; ?></div>
+						<div><?php echo $one_image['button_link']; ?></div>
 					</div>
 				</div>
 			</li>
