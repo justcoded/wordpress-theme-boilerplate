@@ -23,14 +23,14 @@ $this->extends( 'layouts/main' ); ?>
 
 		<div>
 			<?php
-			// print custom field department, if it exists
-			if ( $fields->department ) : ?>
-				<h3><?php echo $fields->department; ?></h3>
+			// print custom field featured_image, if it exists
+			if ( $fields->featured_image ) : ?>
+				<?php rwd_attachment_image( $fields->featured_image, 'hd', 'img' ); ?>
 			<?php endif; ?>
 			<?php
-			// print custom field floor, if it exists
-			if ( $fields->floor ) : ?>
-				<h3><?php echo $fields->floor; ?></h3>
+			// print custom field subheading, if it exists
+			if ( $fields->subheading ) : ?>
+				<h3><?php echo $fields->subheading; ?></h3>
 			<?php endif; ?>
 		</div>
 
