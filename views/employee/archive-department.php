@@ -30,7 +30,7 @@ $this->extends( 'layouts/main' ); ?>
 			<?php
 			// print custom field subheading, if it exists
 			if ( $fields->subheading ) : ?>
-				<h3><?php echo $fields->subheading; ?></h3>
+				<h3><?php echo esc_html( $fields->subheading ); ?></h3>
 			<?php endif; ?>
 		</div>
 

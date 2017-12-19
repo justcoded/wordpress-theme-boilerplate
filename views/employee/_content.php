@@ -6,12 +6,12 @@
 		<?php
 		// print custom field position, if it exists
 		if ( $fields->position ) : ?>
-			<h3><?php echo $fields->position; ?></h3>
+			<h3><?php echo esc_html( $fields->position ); ?></h3>
 		<?php endif; ?>
 		<?php
 		// print custom field bio, if it exists
 		if ( $fields->bio ) : ?>
-			<h3><?php echo $fields->bio; ?></h3>
+			<h3><?php echo esc_html( $fields->bio ); ?></h3>
 		<?php endif; ?>
 	</div>
 	<div class="entry-content">
