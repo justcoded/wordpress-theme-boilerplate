@@ -1,32 +1,46 @@
 <?php
 /**
- * The template for displaying custom taxonomy pages.
+ * The template for displaying custom taxonomy pages inside some CPT.
  */
 
-/* @var \JustCoded\WP\Framework\Web\View $this */
+use JustCoded\WP\Framework\Objects\Termmeta;
+use JustCoded\WP\Framework\Web\View;
+
+/* @var View $this */
+
+// term meta object.
+$fields = new Termmeta();
 
 $this->extends( 'layouts/main' ); ?>
 
-	<?php if ( have_posts() ) : ?>
+<?php if ( have_posts() ) : ?>
 
-		<header class="page-header">
-			<?php
-				the_archive_title( '<h1 class="page-title">', '</h1>' );
-				the_archive_description( '<div class="taxonomy-description">', '</div>' );
-			?>
-		</header><!-- .page-header -->
+	<header class="page-header">
+		<?php
+			the_archive_title( '<h1 class="page-title">', '</h1>' );
+			the_archive_description( '<div class="taxonomy-description">', '</div>' );
+		?>
+	</header><!-- .page-header -->
 
-		<?php /* Start the Loop */ ?>
-		<?php while ( have_posts() ) : the_post(); ?>
+	<div>
+		<?php if ( $fields->featured_image ) : ?>
+			<?php rwd_attachment_image( $fields->featured_image, 'hd', 'img' ); ?>
+		<?php endif; ?>
+		<?php if ( $fields->subheading ) : ?>
+			<h3><?php echo esc_html( $fields->subheading ); ?></h3>
+		<?php endif; ?>
+	</div>
 
-			<?php $this->render( 'employee/_content' ); ?>
+	<?php while ( have_posts() ) : the_post(); ?>
 
-		<?php endwhile; ?>
+		<?php $this->render( 'employee/_content' ); ?>
 
-		<?php the_posts_navigation(); ?>
+	<?php endwhile; ?>
 
-	<?php else : ?>
+	<?php the_posts_navigation(); ?>
 
-		<?php $this->render( 'search/_nothing' ); ?>
+<?php else : ?>
 
-	<?php endif; ?>
+	<?php $this->render( 'search/_nothing' ); ?>
+
+<?php endif; ?>
