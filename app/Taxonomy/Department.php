@@ -7,33 +7,34 @@
 namespace Boilerplate\Theme\Taxonomy;
 
 use JustCoded\WP\Framework\Objects\Taxonomy;
+use Boilerplate\Theme\Post_Type\Employee;
 
 /**
- * Class Example Taxonomy
+ * Class Department Taxonomy
  *
- * @package Boilerplate\Theme\Taxonomy
+ * @package Boilerplate\Theme\Department
  */
-class Example extends Taxonomy {
+class Department extends Taxonomy {
 	/**
 	 * ID
 	 *
 	 * @var string
 	 */
-	public static $ID = 'example';
+	public static $ID = 'department';
 
 	/**
 	 * Rewrite URL part
 	 *
 	 * @var string
 	 */
-	public static $SLUG = 'tax-example';
+	public static $SLUG = 'department';
 
 	/**
 	 * Registration function
 	 */
 	public function init() {
-		$this->label_singular = 'Some Taxo';
-		$this->label_multiple = 'Some Taxo\'s';
+		$this->label_singular = 'Department';
+		$this->label_multiple = 'Departments';
 		$this->textdomain     = 'boilerplate';
 
 		$this->is_hierarchical  = false;
@@ -43,7 +44,7 @@ class Example extends Taxonomy {
 		$this->has_admin_menu = true;
 
 		$this->post_types = array(
-			\Boilerplate\Theme\Post_Type\Example::$ID,
+			Employee::$ID,
 		);
 
 		$this->register();

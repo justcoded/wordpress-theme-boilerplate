@@ -3,13 +3,13 @@
  * The template for displaying all single posts.
  */
 
-use JustCoded\WP\Framework\Web\View;
+/* @var \JustCoded\WP\Framework\Web\View $this */
 
-View::layout_open(); ?>
+$this->extends( 'layouts/main' ); ?>
 
 	<?php while ( have_posts() ) : the_post(); ?>
 
-		<?php View::render( 'post/_content-single' ); ?>
+		<?php $this->render( 'post/_content-single' ); ?>
 
 		<?php the_post_navigation(); ?>
 
@@ -21,5 +21,3 @@ View::layout_open(); ?>
 		?>
 
 	<?php endwhile; // End of the loop. ?>
-
-<?php View::layout_close();

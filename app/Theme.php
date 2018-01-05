@@ -106,7 +106,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 
 		// Scripts.
 		$this->register_assets_scripts( array(
-			'jquery.main.js'
+			'jquery.main.js',
 		), array( 'jquery' ) );
 
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -118,15 +118,14 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Register post types
 	 */
 	public function register_post_types() {
-		new \Boilerplate\Theme\Post_Type\Hero();
-		new \Boilerplate\Theme\Post_Type\Example();
+		\Boilerplate\Theme\Post_Type\Employee::instance();
 	}
 
 	/**
 	 * Register post types
 	 */
 	public function register_taxonomies() {
-		new \Boilerplate\Theme\Taxonomy\Example();
+		\Boilerplate\Theme\Taxonomy\Department::instance();
 	}
 
 	/**
@@ -134,7 +133,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_widgets() {
 		if ( SiteOrigin_Panels::widgets_bundle_active() ) {
-			register_widget( '\Boilerplate\Theme\Widgets\Image_Widget' );
+			register_widget( '\Boilerplate\Theme\Widgets\Hero_Slider_Widget' );
 		}
 	}
 
