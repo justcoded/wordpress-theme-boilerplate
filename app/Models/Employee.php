@@ -3,6 +3,7 @@ namespace Boilerplate\Theme\Models;
 
 use JustCoded\WP\Framework\Objects\Model;
 use Boilerplate\Theme\Post_Type;
+use JustCoded\WP\Framework\Objects\Postmeta;
 
 /**
  * Example of getting data for archive pages of custom post type
@@ -10,6 +11,21 @@ use Boilerplate\Theme\Post_Type;
  * @property \WP_Query $query
  */
 class Employee extends Model {
+	/**
+	 * Postmeta object to easy get meta data.
+	 *
+	 * @var Postmeta
+	 */
+	public $fields;
+
+	/**
+	 * Employee constructor.
+	 * example of usage post meta object inside model for single / archive pages
+	 */
+	public function __construct() {
+		$this->fields = new Postmeta();
+	}
+
 	/**
 	 * Get query to be used in views in the loop
 	 *

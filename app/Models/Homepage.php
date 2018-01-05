@@ -8,10 +8,6 @@ use Boilerplate\Theme\Post_Type\Employee;
  * Model to control data of the homepage
  *
  * @property \WP_Query $hero_query
- *
- * Fields available through JCF:
- *
- * @property string $field_headline
  */
 class Homepage extends Model {
 	/**

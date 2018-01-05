@@ -1,9 +1,8 @@
 <?php
 /* Template Name: Employee Archive */
+/* @var \JustCoded\WP\Framework\Web\View $this */
 
 $model = new Boilerplate\Theme\Models\Employee();
-
-/* @var \JustCoded\WP\Framework\Web\View $this */
 
 $this->extends( 'layouts/main' ); ?>
 
