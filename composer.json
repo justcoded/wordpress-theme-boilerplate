@@ -26,6 +26,8 @@
     "preferred-install": "dist"
   },
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
+
+    "justcoded/wordpress-theme-framework": "^2.1.1"
   }
 }
