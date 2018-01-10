@@ -2,7 +2,9 @@
 namespace Boilerplate\Theme;
 
 use Boilerplate\Theme\Page_Builder\SiteOrigin_Panels;
+use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
+use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
 use JustCoded\WP\Framework\Supports\Just_Custom_Fields;
 use JustCoded\WP\Framework\Supports\Just_Post_Preview;
@@ -56,7 +58,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function init() {
 		if ( SiteOrigin_Panels::plugin_active() ) {
-			new SiteOrigin_Panels();
+			SiteOrigin_Panels::instance();
 		}
 	}
 
@@ -118,14 +120,14 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Register post types
 	 */
 	public function register_post_types() {
-		\Boilerplate\Theme\Post_Type\Employee::instance();
+		Employee::instance();
 	}
 
 	/**
 	 * Register post types
 	 */
 	public function register_taxonomies() {
-		\Boilerplate\Theme\Taxonomy\Department::instance();
+		Department::instance();
 	}
 
 	/**
@@ -141,16 +143,16 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Loads hooks for 3d-party plugins.
 	 */
 	public function support_plugins() {
-		new Just_Responsive_Images();
-		new Just_Custom_Fields();
-		new Just_Post_Preview();
-		new Just_Tinymce();
+		Just_Responsive_Images::instance();
+		Just_Custom_Fields::instance();
+		Just_Post_Preview::instance();
+		Just_Tinymce::instance();
 
 		if ( Autoptimize::check_requirements() ) {
-			new Autoptimize();
+			Autoptimize::instance();
 		}
 		if ( Contact_Form7::check_requirements() ) {
-			new Contact_Form7();
+			Contact_Form7::instance();
 		}
 	}
 }

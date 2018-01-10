@@ -9,19 +9,14 @@ class Theme_Settings extends \JustCoded\WP\Framework\Admin\Theme_Settings {
 	 * Create admin page for theme settings
 	 */
 	public function init() {
-		// init framework instance.
-		self::check_instance();
-
-		$panel = self::$tf->createContainer( array(
+		$panel = static::titan_instance()->createContainer( array(
 			'type' => 'admin-page',
 			'name' => 'Theme Options',
 		) );
 
-		$this->add_panel_tabs( $panel, array(
-			'general' => 'General',
-			'social'  => 'Social links',
-			'404'     => '404 Page',
-		) );
+		$this->register_general_tab( $panel );
+		$this->register_social_tab( $panel );
+		$this->register_404_tab( $panel );
 	}
 
 	/**
