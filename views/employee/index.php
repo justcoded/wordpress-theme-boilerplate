@@ -4,17 +4,15 @@
 
 $model = new Boilerplate\Theme\Models\Employee();
 
+$this->params['subheading'] = 'you can pass variables through templates using `params` property of View object';
 $this->extends( 'layouts/main' ); ?>
 
 <?php while ( have_posts() ) : the_post(); ?>
-	<?php $this->render( 'page/_content', array(
-		'referer' => 'employee',
-	) ); ?>
-
+	<?php $this->include( 'page/_content' ); ?>
 <?php endwhile; // End of the loop. ?>
 
 <?php while ( $model->query->have_posts() ) : $model->query->the_post(); ?>
-	<?php $this->render( 'employee/_content' ); ?>
+	<?php $this->include( 'employee/_content' ); ?>
 <?php endwhile; ?>
 
 <?php if ( $model->query->max_num_pages > 1 ) : // check if the max number of pages is greater than 1.  ?>

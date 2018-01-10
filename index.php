@@ -7,5 +7,5 @@
  * @var $template \JustCoded\WP\Framework\Web\View
  */
 
-$template->include_template();
+$template->run();
 

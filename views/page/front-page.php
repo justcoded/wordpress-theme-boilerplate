@@ -13,7 +13,7 @@ $model = new Homepage();
 ?>
 
 <?php while ( $model->hero_query->have_posts() ) : $model->hero_query->the_post(); ?>
-	<?php $this->render( 'page/_front-hero' ); ?>
+	<?php $this->include( 'page/_front-hero' ); ?>
 <?php endwhile; ?>
 
 <?php if ( is_active_sidebar( 'homepage-bottom' ) ) : ?>
