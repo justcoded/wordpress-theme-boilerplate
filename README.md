@@ -1,65 +1,41 @@
 # WordPress Theme Boilerplate
 
 This package contains Theme Boilerplate, which has a lot of improvements and security patches, according to 
-standard WordPress theme boilerplates (like underscore, etc.).
+standard WordPress theme boilerplates (like underscore, etc.). The code is object-oriented and works with PSR-4 autoload. 
 
-All code is classes-based (OOP) and works with PSR-4 autoload. For easier themes support base classes are
-moved to a stand-alone package called [WordPress Theme Framework](https://github.com/justcoded/wordpress-theme-framework)
-(which is actually a simple plugin, containing some re-usable code parts).
+## Requirements
 
-The main purpose of this boilerplate to separate complex logic and queries from templates. So we divide
-the code into "app" and "views". 
+* PHP 7.0+
+* [WordPress Theme Framework](https://github.com/justcoded/wordpress-theme-framework) plugin.
+
+Theme core files (base classes) are presented as separate wordpress plugin package 
+called [WordPress Theme Framework](https://github.com/justcoded/wordpress-theme-framework). They were
+moved as a plugin to provide easier support and updates population through different site installations.
+
+This solution makes possible to deliver new updates and hot fixes without modifying the theme code.
+
+## What is inside?
+
+### Better file structure
+The organization of a theme is very similar to a modern PHP Frameworks. We totally separated registration of hooks and components, query logic and the templates.
 
 We tried to keep as much standard WordPress features as possible, so all "views" works in the same Template
-Hierarchy as standard templates, just grouped by a content types (with folders). However all standard templates
-in theme root also works.
+Hierarchy as standard templates, just grouped by a content types (with folders).
 
-## File Structure
+![File structure](assets/boilerplate-file-structure.png)
 
-    |-- assets/
-    |   |-- css
-    |   |-- js
-    |   |-- images
-    |
-    |-- app/
-    |   |-- Admin/
-    |   |   |-- Theme_Settings.php
-    |   |-- Models/
-    |   |   |-- {Some_Data_Object}.php
-    |   |-- Post_Type/
-    |   |   |-- {Some_Type}.php
-    |   |-- Taxonomy/
-    |   |   |-- {Some_Taxonomy}.php
-    |   |-- Widgets/
-    |   |   |-- {Some_Widget}.php
-    |   |-- Theme.php
-    |
-    |-- config/
-    |
-    |-- inc/
-    |   |-- helpers.php
-    |   |-- hooks.php
-    |   |-- template-funcs.php
-    |
-    |-- views/
-    |   |-- layouts/
-    |   |   |-- main.php
-    |   |-- partials/
-    |   |   |-- header.php
-    |   |   |-- footer.php
-    |   |-- page/
-    |   |   |-- front-page.php
-    |   |   |-- page.php
-    |   |-- post/
-    |   |   |-- index.php
-    |   |   |-- category.php
-    |   |   |-- single.php
-    |   |-- search/
-    |   |   |-- search.php
-    |   |-- widgets/
-    |   |   |-- {some-widget}.php
-    |
-    |-- functions.php
-    |-- index.php
-    |-- requirements.php
-    |-- style.css
+### Template Inheritance
+
+We added modern template inheritance system based on layouts (very similar to Laravel and Yii frameworks). 
+Some WordPress developers call it a "Theme Wrapper". Markup is handled by one layout file 
+(or more if needed) instead of being scattered across all template files like typical themes.
+Stay <abbr title="Don't repeat yourself">DRY</abbr>!
+
+## Security and optimizations
+
+Theme files are nice and clean, but Theme Framework has a lot of hooks to make your WordPress more secure,
+clean up and optimize final generated HTML.
+
+### Documentation
+
+[Read our Wiki](https://github.com/justcoded/wordpress-theme-boilerplate/wiki) to find out all features.    
