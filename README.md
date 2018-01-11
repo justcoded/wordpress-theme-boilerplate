@@ -22,7 +22,7 @@ The organization of a theme is very similar to a modern PHP Frameworks. We total
 We tried to keep as much standard WordPress features as possible, so all "views" works in the same Template
 Hierarchy as standard templates, just grouped by a content types (with folders).
 
-![File structure](assets/boilerplate-file-structure.png)
+![File structure](https://github.com/justcoded/wordpress-theme-boilerplate/wiki/assets/boilerplate-file-structure.png)
 
 ### Template Inheritance
 
