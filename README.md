@@ -31,7 +31,7 @@ Some WordPress developers call it a "Theme Wrapper". Markup is handled by one la
 (or more if needed) instead of being scattered across all template files like typical themes.
 Stay <abbr title="Don't repeat yourself">DRY</abbr>!
 
-## Security and optimizations
+### Security and optimizations
 
 Theme files are nice and clean, but Theme Framework has a lot of hooks to make your WordPress more secure,
 clean up and optimize final generated HTML.
