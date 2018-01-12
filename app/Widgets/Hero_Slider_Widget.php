@@ -126,7 +126,7 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 		$instance = $this->get_template_variables( $instance, $args );
 		if ( ! empty( $instance['images'] ) ) {
 			$template = ( self::TYPE_FULL === $instance['widget_type'] ) ? 'hero-slider-full' : 'hero-slider-default';
-			View::instance()->render( 'widgets/' . $template, array(
+			View::instance()->include( 'widgets/' . $template, array(
 				'instance' => $instance,
 				'before_widget' => $args['before_widget'],
 				'after_widget' => $args['after_widget'],
