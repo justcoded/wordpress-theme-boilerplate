@@ -14,13 +14,13 @@ moved as a plugin to provide easier support and updates population through diffe
 
 This solution makes possible to deliver new updates and hot fixes without modifying the theme code.
 
-## What is inside?
+## What's Inside?
 
-### Better file structure
-The organization of a theme is very similar to a modern PHP Frameworks. We totally separated registration of hooks and components, query logic and the templates.
+### Better File Structure
+The organization of a theme is very similar to modern PHP Frameworks. We totally separated registration of hooks and components, query logic, and the templates.
 
-We tried to keep as much standard WordPress features as possible, so all "views" works in the same Template
-Hierarchy as standard templates, just grouped by a content types (with folders).
+We tried to keep as much standard WordPress features as possible, so all "views" work in the same Template
+Hierarchy as standard templates, just grouped by content types (with folders).
 
 ![File structure](https://github.com/justcoded/wordpress-theme-boilerplate/wiki/assets/boilerplate-file-structure.png)
 
@@ -28,13 +28,12 @@ Hierarchy as standard templates, just grouped by a content types (with folders).
 
 We added modern template inheritance system based on layouts (very similar to Laravel and Yii frameworks). 
 Some WordPress developers call it a "Theme Wrapper". Markup is handled by one layout file 
-(or more if needed) instead of being scattered across all template files like typical themes.
+(or more if needed) instead of being scattered across all template files as in typical themes.
 Stay <abbr title="Don't repeat yourself">DRY</abbr>!
 
-### Security and optimizations
+### Security and Optimization
 
-Theme files are nice and clean, but Theme Framework has a lot of hooks to make your WordPress more secure,
-clean up and optimize final generated HTML.
+Theme files are nice and clean, and Theme Framework has a lot of hooks to make your WordPress more secure and keep the final generated HTML clean and optimized.
 
 ### Documentation
 
