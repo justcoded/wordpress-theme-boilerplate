@@ -10,6 +10,7 @@ use JustCoded\WP\Framework\Supports\Just_Custom_Fields;
 use JustCoded\WP\Framework\Supports\Just_Post_Preview;
 use JustCoded\WP\Framework\Supports\Just_Responsive_Images;
 use JustCoded\WP\Framework\Supports\Just_Tinymce;
+use JustCoded\WP\Framework\Supports\Socials_Feed;
 
 /**
  * Theme main entry point
@@ -136,6 +137,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	public function register_widgets() {
 		if ( SiteOrigin_Panels::widgets_bundle_active() ) {
 			register_widget( '\Boilerplate\Theme\Widgets\Hero_Slider_Widget' );
+			register_widget( '\Boilerplate\Theme\Widgets\Socials_Feed_Widget' );
 		}
 	}
 
@@ -147,6 +149,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 		Just_Custom_Fields::instance();
 		Just_Post_Preview::instance();
 		Just_Tinymce::instance();
+		new Socials_Feed();
 
 		if ( Autoptimize::check_requirements() ) {
 			Autoptimize::instance();
