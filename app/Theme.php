@@ -151,8 +151,5 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 		if ( Autoptimize::check_requirements() ) {
 			Autoptimize::instance();
 		}
-		if ( Contact_Form7::check_requirements() ) {
-			Contact_Form7::instance();
-		}
 	}
 }
