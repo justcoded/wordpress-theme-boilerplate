@@ -93,16 +93,16 @@ class Employee extends Post_Type {
 			'gallery'             => $faker->repeater(
 				[
 					[
-						'link'        => $faker->text(),
-						'image_field' => $faker->domain(),
+						'link'        => $faker->domain(),
+						'image_field' => $faker->attachment_generated( 480, 240 ),
 					],
 					[
-						'link'        => $faker->text(),
-						'image_field' => $faker->domain(),
+						'link'        => $faker->domain(),
+						'image_field' => $faker->attachment_generated( 480, 240 ),
 					],
 					[
-						'link'        => $faker->text(),
-						'image_field' => $faker->domain(),
+						'link'        => $faker->domain(),
+						'image_field' => $faker->attachment_generated( 480, 240 ),
 					],
 				]
 			),
