@@ -1,8 +1,10 @@
 <?php
+
 namespace Boilerplate\Theme\Post_Type;
 
 use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Objects\Post_Type;
+use JustCoded\WP\Framework\Supports\FakerContent;
 
 /**
  * Custom post type Employee to illustrate single/archive features
@@ -28,7 +30,7 @@ class Employee extends Post_Type {
 	public function init() {
 		$this->label_singular = 'Employee';
 		$this->label_multiple = 'Employees';
-		$this->textdomain = 'boilerplate';
+		$this->textdomain     = 'boilerplate';
 
 		$this->has_single       = true;
 		$this->is_searchable    = true;
@@ -44,5 +46,66 @@ class Employee extends Post_Type {
 		);
 
 		$this->register();
+	}
+
+	/**
+	 * Generate faker content
+	 */
+	public function faker() {
+		$faker = FakerContent::instance();
+
+		return [
+			'post_title'          => $faker->words( 2 ),
+			'post_content'        => $faker->text( 500 ),
+			'post_featured_image' => $faker->attachment_generated( 1280, 920 ),
+			'content_fields'      => $faker->flexible_content(
+				[
+					'name_layout' => [
+						[
+							'text_field'         => $faker->text( 500 ),
+							'image_field'        => $faker->attachment_generated( 1500, 750 ),
+							'words_field'        => $faker->words( 5 ),
+							'number_field'       => $faker->number(),
+							'date_field'         => $faker->date(),
+							'timezone_field'     => $faker->timezone(),
+							'person_name_field'  => $faker->person(),
+							'company_name_field' => $faker->company(),
+							'email_field'        => $faker->email(),
+							'domain_name_field'  => $faker->domain(),
+							'ip_address_field'   => $faker->ip(),
+						],
+						[
+							'text_field'         => $faker->text( 500 ),
+							'image_field'        => $faker->attachment_generated( 480, 240 ),
+							'words_field'        => $faker->words( 5 ),
+							'number_field'       => $faker->number(),
+							'date_field'         => $faker->date(),
+							'timezone_field'     => $faker->timezone(),
+							'person_name_field'  => $faker->person(),
+							'company_name_field' => $faker->company(),
+							'email_field'        => $faker->email(),
+							'domain_name_field'  => $faker->domain(),
+							'ip_address_field'   => $faker->ip(),
+						],
+					],
+				]
+			),
+			'gallery'             => $faker->repeater(
+				[
+					[
+						'link'        => $faker->text(),
+						'image_field' => $faker->domain(),
+					],
+					[
+						'link'        => $faker->text(),
+						'image_field' => $faker->domain(),
+					],
+					[
+						'link'        => $faker->text(),
+						'image_field' => $faker->domain(),
+					],
+				]
+			),
+		];
 	}
 }
