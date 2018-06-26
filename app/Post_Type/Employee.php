@@ -52,60 +52,43 @@ class Employee extends Post_Type {
 	 * Generate faker content
 	 */
 	public function faker() {
-		$faker = FakerContent::instance();
+		$fkr = FakerContent::instance();
 
 		return [
-			'post_title'          => $faker->words( 2 ),
-			'post_content'        => $faker->text( 500 ),
-			'post_featured_image' => $faker->attachment_generated( 1280, 920 ),
-			'content_fields'      => $faker->flexible_content(
-				[
-					'name_layout' => [
-						[
-							'text_field'         => $faker->text( 500 ),
-							'image_field'        => $faker->attachment_generated( 1500, 750 ),
-							'words_field'        => $faker->words( 5 ),
-							'number_field'       => $faker->number(),
-							'date_field'         => $faker->date(),
-							'timezone_field'     => $faker->timezone(),
-							'person_name_field'  => $faker->person(),
-							'company_name_field' => $faker->company(),
-							'email_field'        => $faker->email(),
-							'domain_name_field'  => $faker->domain(),
-							'ip_address_field'   => $faker->ip(),
-						],
-						[
-							'text_field'         => $faker->text( 500 ),
-							'image_field'        => $faker->attachment_generated( 480, 240 ),
-							'words_field'        => $faker->words( 5 ),
-							'number_field'       => $faker->number(),
-							'date_field'         => $faker->date(),
-							'timezone_field'     => $faker->timezone(),
-							'person_name_field'  => $faker->person(),
-							'company_name_field' => $faker->company(),
-							'email_field'        => $faker->email(),
-							'domain_name_field'  => $faker->domain(),
-							'ip_address_field'   => $faker->ip(),
-						],
-					],
-				]
+			// Post object fields.
+			'post_title'          => $fkr->person(),
+			'post_content'        => $fkr->html_text( [ 3, 5 ] ),
+			'post_featured_image' => $fkr->attachment_generated( 1280, 920 ),
+
+			// Simple meta data.
+			'_position'           => $fkr->job_title(),
+			'_bio'                => $fkr->text( 200 ),
+
+			// Collection example.
+			'_gallery'            => $fkr->repeater(
+				[ 1, 5 ],
+				function () use ( $fkr ) {
+					return [
+						'image' => $fkr->attachment_generated( 480, 240 ),
+					];
+				}
 			),
-			'gallery'             => $faker->repeater(
-				[
-					[
-						'link'        => $faker->domain(),
-						'image_field' => $faker->attachment_generated( 480, 240 ),
-					],
-					[
-						'link'        => $faker->domain(),
-						'image_field' => $faker->attachment_generated( 480, 240 ),
-					],
-					[
-						'link'        => $faker->domain(),
-						'image_field' => $faker->attachment_generated( 480, 240 ),
-					],
-				]
-			),
+			// ACF Flexible Content generator and fields examples.
+			'flex_content'        => $fkr->flexible_content( [
+				$fkr->flexible_layout( 'module_A', [
+					'words'        => $fkr->words( 5 ),
+					'number'       => $fkr->number(),
+					'date'         => $fkr->date(),
+					'person_name'  => $fkr->person(),
+					'company_name' => $fkr->company(),
+					'job_title'    => $fkr->job_title(),
+					'email'        => $fkr->email(),
+					'domain_name'  => $fkr->faker->domainName,
+				] ),
+				$fkr->flexible_layout( 'module_B', [
+					'text_field' => $fkr->words( 5 ),
+				] ),
+			] ),
 		];
 	}
 }
