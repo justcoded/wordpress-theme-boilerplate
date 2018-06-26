@@ -58,7 +58,7 @@ class Employee extends Post_Type {
 			// Post object fields.
 			'post_title'          => $fkr->person(),
 			'post_content'        => $fkr->html_text( [ 3, 5 ] ),
-			'post_featured_image' => $fkr->attachment_generated( 1280, 920 ),
+			'post_featured_image' => $fkr->image_attachment( 1280, 920 ),
 
 			// Simple meta data.
 			'_position'           => $fkr->job_title(),
@@ -69,7 +69,7 @@ class Employee extends Post_Type {
 				[ 1, 5 ],
 				function () use ( $fkr ) {
 					return [
-						'image' => $fkr->attachment_generated( 480, 240 ),
+						'image' => $fkr->image_attachment( 480, 240 ),
 					];
 				}
 			),
