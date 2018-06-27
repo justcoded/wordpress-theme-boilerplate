@@ -1,8 +1,10 @@
 <?php
+
 namespace Boilerplate\Theme\Post_Type;
 
 use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Objects\Post_Type;
+use JustCoded\WP\Framework\Supports\FakerContent;
 
 /**
  * Custom post type Employee to illustrate single/archive features
@@ -28,7 +30,7 @@ class Employee extends Post_Type {
 	public function init() {
 		$this->label_singular = 'Employee';
 		$this->label_multiple = 'Employees';
-		$this->textdomain = 'boilerplate';
+		$this->textdomain     = 'boilerplate';
 
 		$this->has_single       = true;
 		$this->is_searchable    = true;
@@ -44,5 +46,49 @@ class Employee extends Post_Type {
 		);
 
 		$this->register();
+	}
+
+	/**
+	 * Generate faker content
+	 */
+	public function faker() {
+		$fkr = FakerContent::instance();
+
+		return [
+			// Post object fields.
+			'post_title'          => $fkr->person(),
+			'post_content'        => $fkr->html_text( [ 3, 5 ] ),
+			'post_featured_image' => $fkr->image_attachment( 1280, 920 ),
+
+			// Simple meta data.
+			'_position'           => $fkr->job_title(),
+			'_bio'                => $fkr->text( 200 ),
+
+			// Collection example.
+			'_gallery'            => $fkr->repeater(
+				[ 1, 5 ],
+				function () use ( $fkr ) {
+					return [
+						'image' => $fkr->image_attachment( 480, 240 ),
+					];
+				}
+			),
+			// ACF Flexible Content generator and fields examples.
+			'flex_content'        => $fkr->flexible_content( [
+				$fkr->flexible_layout( 'module_A', [
+					'words'        => $fkr->words( 5 ),
+					'number'       => $fkr->number(),
+					'date'         => $fkr->date(),
+					'person_name'  => $fkr->person(),
+					'company_name' => $fkr->company(),
+					'job_title'    => $fkr->job_title(),
+					'email'        => $fkr->email(),
+					'domain_name'  => $fkr->faker->domainName,
+				] ),
+				$fkr->flexible_layout( 'module_B', [
+					'text_field' => $fkr->words( 5 ),
+				] ),
+			] ),
+		];
 	}
 }
