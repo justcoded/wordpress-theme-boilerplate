@@ -13,3 +13,9 @@ use JustCoded\WP\Framework\Web\View;
 
 $this->extends( 'layouts/main' ); ?>
 
+<?php while ( have_posts() ) : the_post(); ?>
+
+	<?php $this->include( 'page/_content' ); ?>
+
+<?php endwhile; ?>
+

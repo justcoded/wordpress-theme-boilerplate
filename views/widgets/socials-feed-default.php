@@ -14,11 +14,16 @@ $model = new \Boilerplate\Theme\Models\SocialFeeds();
 ?>
 
 <?php echo $before_widget; ?>
-<?php while ( $model->get_query( $instance )->have_posts() ) : $model->get_query( $instance )->the_post(); ?>
 
-	<h1><?php the_title(); ?></h1>
-	<p><?php the_content(); ?></p>
-	<img src="<?php print get_post_meta( get_the_ID(), 'postmeta_image', true ); ?> "<?php ; ?>">
+	<?php while ( $model->get_query( $instance )->have_posts() ) : $model->get_query( $instance )->the_post(); ?>
 
-<?php endwhile; ?>
+		<div class="container-md">
+			<h1><?php the_title(); ?></h1>
+			<p><?php the_content(); ?></p>
+			<img src="<?php print get_post_meta( get_the_ID(), 'postmeta_image', true ); ?> "<?php ; ?>">
+		</div>
+
+
+	<?php endwhile; ?>
+
 <?php echo $after_widget; ?>

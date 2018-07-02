@@ -3,6 +3,7 @@ namespace Boilerplate\Theme;
 
 use Boilerplate\Theme\Page_Builder\SiteOrigin_Panels;
 use Boilerplate\Theme\Post_Type\Employee;
+use Boilerplate\Theme\Supports\ACF;
 use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
@@ -137,7 +138,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	public function register_widgets() {
 		if ( SiteOrigin_Panels::widgets_bundle_active() ) {
 			register_widget( '\Boilerplate\Theme\Widgets\Hero_Slider_Widget' );
-			register_widget( '\Boilerplate\Theme\Widgets\Socials_Feed_Widget' );
+			register_widget( 'JustCoded\WP\Framework\Page_Builder\v25\Widgets\Socials_Feed_Widget' );
 		}
 	}
 
@@ -156,6 +157,10 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 		}
 		if ( Contact_Form7::check_requirements() ) {
 			Contact_Form7::instance();
+		}
+
+		if ( ACF::check_requirements() ) {
+			ACF::instance();
 		}
 	}
 }
