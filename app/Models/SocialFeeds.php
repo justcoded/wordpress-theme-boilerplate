@@ -10,7 +10,7 @@ class SocialFeeds extends Model {
 
 		$args = array(
 			'post_type'      => 'socials_feed',
-			'posts_per_page' => - 1,
+			'posts_per_page' => 5,
 		);
 		if ( ! empty( $instance ) ) {
 			foreach ( $instance['social_networks'] as $key => $val ) {

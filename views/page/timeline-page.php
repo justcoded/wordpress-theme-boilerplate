@@ -13,13 +13,17 @@ use JustCoded\WP\Framework\Web\View;
 
 $model = new \Boilerplate\Theme\Models\SocialFeeds();
 
-$this->extends( 'layouts/main' ); ?>
+$this->extends( 'layouts/one_column' ); ?>
 
-<?php while ( $model->get_query(  )->have_posts() ) : $model->get_query(  )->the_post(); ?>
+<div class="tickets-grid__inner">
+	<?php while ( $model->get_query()->have_posts() ) : $model->get_query()->the_post(); ?>
 
-	<h1><?php the_title(); ?></h1>
-	<p><?php the_content(); ?></p>
-	<img src="<?php print get_post_meta( get_the_ID(), 'postmeta_image', true ); ?> "<?php ; ?>">
+		<h1><?php the_title(); ?></h1>
+		<p><?php the_content(); ?></p>
+		<img src="<?php print get_post_meta( get_the_ID(), 'postmeta_image', true ); ?>">
 
-<?php endwhile; ?>
+	<?php endwhile; ?>
+</div>
+
+<?php echo cpt_next_posts_link( $model->get_query(), 'See More', 'data-selector=".tickets-grid__inner"' ); ?>
 

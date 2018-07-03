@@ -8,6 +8,7 @@ use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
 use JustCoded\WP\Framework\Supports\Just_Custom_Fields;
+use JustCoded\WP\Framework\Supports\Just_Load_More;
 use JustCoded\WP\Framework\Supports\Just_Post_Preview;
 use JustCoded\WP\Framework\Supports\Just_Responsive_Images;
 use JustCoded\WP\Framework\Supports\Just_Tinymce;
@@ -150,6 +151,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 		Just_Custom_Fields::instance();
 		Just_Post_Preview::instance();
 		Just_Tinymce::instance();
+		Just_Load_More::instance();
 		new Socials_Feed();
 
 		if ( Autoptimize::check_requirements() ) {
