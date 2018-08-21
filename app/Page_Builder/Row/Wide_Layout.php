@@ -45,7 +45,6 @@ class Wide_Layout extends \JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_R
 				),
 				'priority' => 15,
 			),
-			'border_color' => null,
 		);
 	}
 

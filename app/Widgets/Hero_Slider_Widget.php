@@ -7,7 +7,7 @@ use JustCoded\WP\Framework\Web\View;
 
 /**
  * Class Hero_Slider_Widget
- * Custom image wordpress widget based on siteorigin widgets bundle
+ * Custom image WordPress widget based on siteorigin widgets bundle
  */
 class Hero_Slider_Widget extends Page_Builder_Widget {
 
@@ -67,8 +67,7 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 						'update_event' => 'change',
 						'value_method' => 'val',
 					),
-
-					'fields' => array(
+					'fields'     => array(
 						'image'       => array(
 							'type'  => 'media',
 							'label' => __( 'Image', 'boilerplate' ),
@@ -81,11 +80,11 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 							'type'  => 'text',
 							'label' => __( 'Description', 'boilerplate' ),
 						),
-						'button_text'        => array(
+						'button_text' => array(
 							'type'  => 'text',
 							'label' => __( 'Button text', 'boilerplate' ),
 						),
-						'button_link'        => array(
+						'button_link' => array(
 							'type'  => 'link',
 							'label' => __( 'Button link', 'boilerplate' ),
 						),
@@ -127,9 +126,9 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 		if ( ! empty( $instance['images'] ) ) {
 			$template = ( self::TYPE_FULL === $instance['widget_type'] ) ? 'hero-slider-full' : 'hero-slider-default';
 			View::instance()->include( 'widgets/' . $template, array(
-				'instance' => $instance,
+				'instance'      => $instance,
 				'before_widget' => $args['before_widget'],
-				'after_widget' => $args['after_widget'],
+				'after_widget'  => $args['after_widget'],
 			) );
 		}
 	}

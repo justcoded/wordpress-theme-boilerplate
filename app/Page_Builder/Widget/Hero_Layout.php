@@ -41,11 +41,10 @@ class Hero_Layout extends \JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_W
 				'group'    => 'layout',
 				'options'  => array(
 					'default' => 'Default',
-					'big' => 'Really big',
+					'big'     => 'Really big',
 				),
 				'priority' => 15,
 			),
-			'border_color' => null,
 		);
 	}
 
