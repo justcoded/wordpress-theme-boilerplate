@@ -1,12 +1,12 @@
 <?php
 /**
  * The template for displaying custom taxonomy pages inside some CPT.
+ *
+ * @var View $this
  */
 
 use JustCoded\WP\Framework\Objects\Termmeta;
 use JustCoded\WP\Framework\Web\View;
-
-/* @var View $this */
 
 // term meta object.
 $fields = new Termmeta();
@@ -17,8 +17,8 @@ $this->extends( 'layouts/main' ); ?>
 
 	<header class="page-header">
 		<?php
-			the_archive_title( '<h1 class="page-title">', '</h1>' );
-			the_archive_description( '<div class="taxonomy-description">', '</div>' );
+		the_archive_title( '<h1 class="page-title">', '</h1>' );
+		the_archive_description( '<div class="taxonomy-description">', '</div>' );
 		?>
 	</header><!-- .page-header -->
 
@@ -31,13 +31,15 @@ $this->extends( 'layouts/main' ); ?>
 		<?php endif; ?>
 	</div>
 
-	<?php while ( have_posts() ) : the_post(); ?>
+	<?php
+	while ( have_posts() ) :
+		the_post();
 
-		<?php $this->include( 'employee/_content' ); ?>
+		$this->include( 'employee/_content' );
+	endwhile;
 
-	<?php endwhile; ?>
-
-	<?php the_posts_navigation(); ?>
+	the_posts_navigation();
+	?>
 
 <?php else : ?>
 

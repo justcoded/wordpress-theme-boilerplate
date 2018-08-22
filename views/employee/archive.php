@@ -1,21 +1,33 @@
 <?php
-/* Template Name: Employee Archive */
-/* @var \JustCoded\WP\Framework\Web\View $this */
+/**
+ * Template Name: Employee Archive
+ *
+ * @var \JustCoded\WP\Framework\Web\View $this
+ */
 
 $model = new Boilerplate\Theme\Models\Employee();
 
 $this->params['subheading'] = 'you can pass variables through templates using `params` property of View object';
-$this->extends( 'layouts/main' ); ?>
+$this->extends( 'layouts/main' );
+?>
 
-<?php while ( have_posts() ) : the_post(); ?>
-	<?php $this->include( 'page/_content' ); ?>
-<?php endwhile; // End of the loop. ?>
+<?php
+// Page content The loop.
+while ( have_posts() ) :
+	the_post();
 
-<?php while ( $model->query->have_posts() ) : $model->query->the_post(); ?>
-	<?php $this->include( 'employee/_content' ); ?>
-<?php endwhile; ?>
+	$this->include( 'page/_content' );
+endwhile;
 
-<?php if ( $model->query->max_num_pages > 1 ) : // check if the max number of pages is greater than 1.  ?>
+// Custom archive The loop.
+while ( $model->query->have_posts() ) :
+	$model->query->the_post();
+
+	$this->include( 'employee/_content' );
+endwhile;
+?>
+
+<?php if ( $model->query->max_num_pages > 1 ) : // check if the max number of pages is greater than 1. ?>
 	<nav class="pagenav">
 		<div class="alignleft">
 			<?php echo cpt_prev_posts_link( $model->query, 'Prev Page' ); // display newer posts link. ?>

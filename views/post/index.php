@@ -1,18 +1,19 @@
 <?php
 /**
  * The template for displaying Blog page.
+ *
+ * @var \JustCoded\WP\Framework\Web\View $this
  */
-
-/* @var \JustCoded\WP\Framework\Web\View $this */
 
 $this->extends( 'layouts/main' ); ?>
 
-	<h1>Our blog</h1>
+<h1>Our blog</h1>
 
-	<?php while ( have_posts() ) : the_post(); ?>
+<?php
+while ( have_posts() ) :
+	the_post();
 
-		<?php $this->include( 'post/_content' ); ?>
+	$this->include( 'post/_content' );
+endwhile; // End of the loop.
 
-	<?php endwhile; // End of the loop. ?>
-
-	<?php the_posts_navigation(); ?>
+the_posts_navigation();

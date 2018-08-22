@@ -34,6 +34,8 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 
 		/**
 		 * Refers to a single instance of this class.
+		 *
+		 * @var Just_Theme_Framework_Checker
 		 */
 		private static $instance = null;
 
@@ -125,9 +127,9 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 			}
 
 			$html = '<div class="error"><h3>Please fix the errors below to use current activated theme:</h3><p>' . implode( '</p><p>', $warnings ) . '</p></div>';
-			echo wp_kses( $html, 'post' );
+			echo wp_kses( $html, array( 'div', 'h3', 'p' ) );
 		}
 	}
 
 	Just_Theme_Framework_Checker::single();
-} // End if().
+}
