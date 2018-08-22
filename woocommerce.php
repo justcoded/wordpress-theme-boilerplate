@@ -1,15 +1,10 @@
 <?php
 /**
- * The template for displaying all pages.
+ * The wrapper for displaying all WooCommerce pages.
  *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
+ * @var \JustCoded\WP\Framework\Web\View $this
  */
 
-/* @var \JustCoded\WP\Framework\Web\View $this */
+$this->extends( 'layouts/main' );
 
-$this->extends( 'layouts/main' ); ?>
-
-<?php woocommerce_content(); ?>
+woocommerce_content();

@@ -2,12 +2,11 @@
 /**
  * Main layout loaded by default
  * Extended from "html" layout
+ *
+ * @var \JustCoded\WP\Framework\Web\View $this
  */
 
-/* @var \JustCoded\WP\Framework\Web\View $this */
-
 $this->extends( 'layouts/html' );
-
 ?>
 
 <a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'boilerplate' ); ?></a>

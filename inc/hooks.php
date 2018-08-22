@@ -1,6 +1,6 @@
 <?php
 /**
- * This file contains different hooks and actions to extend wordpress core.
+ * This file contains different hooks and actions to extend WordPress core.
  */
 
 

@@ -1,9 +1,9 @@
 <?php
 /**
  * The template for displaying archive pages.
+ *
+ * @var \JustCoded\WP\Framework\Web\View $this
  */
-
-/* @var \JustCoded\WP\Framework\Web\View $this */
 
 $this->extends( 'layouts/main' ); ?>
 
@@ -16,14 +16,16 @@ $this->extends( 'layouts/main' ); ?>
 			?>
 		</header><!-- .page-header -->
 
-		<?php /* Start the Loop */ ?>
-		<?php while ( have_posts() ) : the_post(); ?>
+		<?php
+		/* Start the Loop */
+		while ( have_posts() ) :
+			the_post();
 
-			<?php $this->include( 'post/_content' ); ?>
+			$this->include( 'post/_content' );
+		endwhile;
 
-		<?php endwhile; ?>
-
-		<?php the_posts_navigation(); ?>
+		the_posts_navigation();
+		?>
 
 	<?php else : ?>
 
