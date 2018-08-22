@@ -7,7 +7,7 @@ use JustCoded\WP\Framework\Web\View;
 
 /**
  * Class Hero_Slider_Widget
- * Custom image wordpress widget based on siteorigin widgets bundle
+ * Custom image WordPress widget based on siteorigin widgets bundle
  */
 class Hero_Slider_Widget extends Page_Builder_Widget {
 
@@ -24,7 +24,7 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 	/**
 	 * Hero_Slider_Widget constructor.
 	 */
-	function __construct() {
+	public function __construct() {
 		parent::__construct(
 			'hero-slider',
 			__( 'Hero Slider' ),
@@ -55,53 +55,50 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 	 *
 	 * @return array
 	 */
-	function get_widget_form() {
-		return
-			array(
-				'images'      => array(
-					'type'       => 'repeater',
-					'label'      => __( 'Images', 'boilerplate' ),
-					'item_name'  => __( 'Image', 'boilerplate' ),
-					'item_label' => array(
-						'selector'     => "[name*='title']",
-						'update_event' => 'change',
-						'value_method' => 'val',
+	public function get_widget_form() {
+		return array(
+			'images'      => array(
+				'type'       => 'repeater',
+				'label'      => __( 'Images', 'boilerplate' ),
+				'item_name'  => __( 'Image', 'boilerplate' ),
+				'item_label' => array(
+					'selector'     => "[name*='title']",
+					'update_event' => 'change',
+					'value_method' => 'val',
+				),
+				'fields'     => array(
+					'image'       => array(
+						'type'  => 'media',
+						'label' => __( 'Image', 'boilerplate' ),
 					),
-
-					'fields' => array(
-						'image'       => array(
-							'type'  => 'media',
-							'label' => __( 'Image', 'boilerplate' ),
-						),
-						'title'       => array(
-							'type'  => 'text',
-							'label' => __( 'Image title', 'boilerplate' ),
-						),
-						'description' => array(
-							'type'  => 'text',
-							'label' => __( 'Description', 'boilerplate' ),
-						),
-						'button_text'        => array(
-							'type'  => 'text',
-							'label' => __( 'Button text', 'boilerplate' ),
-						),
-						'button_link'        => array(
-							'type'  => 'link',
-							'label' => __( 'Button link', 'boilerplate' ),
-						),
+					'title'       => array(
+						'type'  => 'text',
+						'label' => __( 'Image title', 'boilerplate' ),
+					),
+					'description' => array(
+						'type'  => 'text',
+						'label' => __( 'Description', 'boilerplate' ),
+					),
+					'button_text' => array(
+						'type'  => 'text',
+						'label' => __( 'Button text', 'boilerplate' ),
+					),
+					'button_link' => array(
+						'type'  => 'link',
+						'label' => __( 'Button link', 'boilerplate' ),
 					),
 				),
-				'widget_type' => array(
-					'type'    => 'select',
-					'label'   => __( 'Choose widget type', 'boilerplate' ),
-					'options' => array(
-						self::TYPE_DEFAULT => __( 'Default', 'boilerplate' ),
-						self::TYPE_FULL    => __( 'Full width', 'boilerplate' ),
-					),
-					'default' => 'full',
+			),
+			'widget_type' => array(
+				'type'    => 'select',
+				'label'   => __( 'Choose widget type', 'boilerplate' ),
+				'options' => array(
+					self::TYPE_DEFAULT => __( 'Default', 'boilerplate' ),
+					self::TYPE_FULL    => __( 'Full width', 'boilerplate' ),
 				),
-			);
-
+				'default' => 'full',
+			),
+		);
 	}
 
 	/**
@@ -127,9 +124,9 @@ class Hero_Slider_Widget extends Page_Builder_Widget {
 		if ( ! empty( $instance['images'] ) ) {
 			$template = ( self::TYPE_FULL === $instance['widget_type'] ) ? 'hero-slider-full' : 'hero-slider-default';
 			View::instance()->include( 'widgets/' . $template, array(
-				'instance' => $instance,
+				'instance'      => $instance,
 				'before_widget' => $args['before_widget'],
-				'after_widget' => $args['after_widget'],
+				'after_widget'  => $args['after_widget'],
 			) );
 		}
 	}
