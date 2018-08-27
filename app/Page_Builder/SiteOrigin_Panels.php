@@ -1,6 +1,9 @@
 <?php
 namespace Boilerplate\Theme\Page_Builder;
 
+use Boilerplate\Theme\Page_Builder\Row;
+use Boilerplate\Theme\Page_Builder\Widget;
+use JustCoded\WP\Framework\Page_Builder\v25\Layouts as Core;
 use JustCoded\WP\Framework\Page_Builder\v25\Page_Builder_Loader;
 
 /**
@@ -11,14 +14,6 @@ use JustCoded\WP\Framework\Page_Builder\v25\Page_Builder_Loader;
  * @package Boilerplate\Theme\Page_Builder
  */
 class SiteOrigin_Panels extends Page_Builder_Loader {
-
-	/**
-	 * Default namespace of rows/widgets if relative name specified
-	 *
-	 * @var string
-	 */
-	public $default_layout_namespace = '\Boilerplate\Theme\Page_Builder';
-
 	/**
 	 * Init row/widgets layouts and change disabled plugins list.
 	 * Called at the end of the __contruct() method
@@ -37,10 +32,10 @@ class SiteOrigin_Panels extends Page_Builder_Loader {
 	public function init() {
 		parent::init();
 
-		$this->register_row_layout( '\JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_Row_Layout', 'Default' );
-		$this->register_row_layout( 'Row\Wide_Layout' );
+		$this->register_row_layout( Core\Rwd_Row_Layout::class, 'Default' );
+		$this->register_row_layout( Row\Wide_Layout::class );
 
-		$this->register_widget_layout( '\JustCoded\WP\Framework\Page_Builder\v25\Layouts\Rwd_Widget_Layout', 'Default' );
-		$this->register_widget_layout( 'Widget\Hero_Layout' );
+		$this->register_widget_layout( Core\Rwd_Widget_Layout::class, 'Default' );
+		$this->register_widget_layout( Widget\Hero_Layout::class );
 	}
 }
