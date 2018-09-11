@@ -1,10 +1,9 @@
 <?php
 namespace Boilerplate\Theme\Fields;
 
-use Boilerplate\Theme\Fields\Modules\Fields_General;
-use Boilerplate\Theme\Fields\Modules\Modules_Slider;
+use JustCoded\WP\Framework\ACF\ACF_Register;
 
-class User_Fields extends \JustCoded\WP\Framework\ACF\ACF_Register {
+class User_Fields extends ACF_Register {
 
 	/**
 	 * Init fields configuration method

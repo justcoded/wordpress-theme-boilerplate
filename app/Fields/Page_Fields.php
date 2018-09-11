@@ -2,8 +2,8 @@
 
 namespace Boilerplate\Theme\Fields;
 
-use Boilerplate\Theme\Fields\Modules\Fields_General;
-use Boilerplate\Theme\Fields\Modules\Modules_Slider;
+use Boilerplate\Theme\Fields\Modules\Fields_Generic;
+use Boilerplate\Theme\Fields\Modules\Module_Hero;
 
 class Page_Fields extends \JustCoded\WP\Framework\ACF\ACF_Register {
 
@@ -13,9 +13,9 @@ class Page_Fields extends \JustCoded\WP\Framework\ACF\ACF_Register {
 	public function init() {
 		$this->has(
 			$this->build()
-				->addFields( Fields_General::get( 'subtitle' ) )
+				->addFields( Fields_Generic::get( 'subtitle' ) )
 				->addFlexibleContent( 'sections' )
-					->addLayout( Modules_Slider::get() )
+					->addLayout( Module_Hero::get() )
 					->endFlexibleContent()
 				->setLocation( 'post_type', '==', 'page' )
 		);

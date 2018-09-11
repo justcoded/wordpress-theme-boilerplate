@@ -4,7 +4,7 @@ namespace Boilerplate\Theme\Fields\Modules;
 
 use JustCoded\WP\Framework\ACF\ACF_Definition;
 
-class Fields_General extends ACF_Definition {
+class Fields_Generic extends ACF_Definition {
 	/**
 	 * Init fields configuration method
 	 */
