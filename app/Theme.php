@@ -1,6 +1,9 @@
 <?php
 namespace Boilerplate\Theme;
 
+use Boilerplate\Theme\Fields\Page_Fields;
+use Boilerplate\Theme\Fields\Theme_Fields;
+use Boilerplate\Theme\Fields\User_Fields;
 use Boilerplate\Theme\Page_Builder\SiteOrigin_Panels;
 use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
@@ -57,9 +60,8 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Additional classes initialize
 	 */
 	public function init() {
-		if ( SiteOrigin_Panels::plugin_active() ) {
-			SiteOrigin_Panels::instance();
-		}
+		// TODO: ACF check and enable support ACF (collapse sections, our styles).
+		Theme_Fields::instance();
 	}
 
 	/**
@@ -121,6 +123,10 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_post_types() {
 		Employee::instance();
+
+		// register fields.
+		Page_Fields::instance();
+		User_Fields::instance();
 	}
 
 	/**
@@ -128,15 +134,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_taxonomies() {
 		Department::instance();
-	}
-
-	/**
-	 * Register custo widgets
-	 */
-	public function register_widgets() {
-		if ( SiteOrigin_Panels::widgets_bundle_active() ) {
-			register_widget( '\Boilerplate\Theme\Widgets\Hero_Slider_Widget' );
-		}
 	}
 
 	/**

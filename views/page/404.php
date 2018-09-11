@@ -9,6 +9,8 @@ use Boilerplate\Theme\Admin\Theme_Settings;
 
 $this->extends( 'layouts/main' );
 
+// TODO: replace with theme getter from acf.
+
 $title   = Theme_Settings::get( '404_title' );
 $content = Theme_Settings::get( '404_content' );
 ?>
