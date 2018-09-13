@@ -4,8 +4,9 @@ namespace Boilerplate\Theme\Fields;
 
 use Boilerplate\Theme\Fields\Modules\Fields_Generic;
 use Boilerplate\Theme\Fields\Modules\Module_Hero;
+use JustCoded\WP\Framework\ACF\ACF_Register;
 
-class Page_Fields extends \JustCoded\WP\Framework\ACF\ACF_Register {
+class Page_Fields extends ACF_Register {
 
 	/**
 	 * Init fields configuration method

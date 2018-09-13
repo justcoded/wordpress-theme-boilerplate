@@ -5,14 +5,14 @@
  * @var \JustCoded\WP\Framework\Web\View $this
  */
 
-use Boilerplate\Theme\Admin\Theme_Settings;
+use JustCoded\WP\Framework\Objects\Thememeta;
+
+$fields = new Thememeta();
 
 $this->extends( 'layouts/main' );
 
-// TODO: replace with theme getter from acf.
-
-$title   = Theme_Settings::get( '404_title' );
-$content = Theme_Settings::get( '404_content' );
+$title   = $fields->page_404_title;
+$content = $fields->page_404_content;
 ?>
 
 <section class="error-404 not-found">

@@ -1,8 +1,15 @@
-<?php $this->footer_begin(); ?>
+<?php
+
+use JustCoded\WP\Framework\Objects\Thememeta;
+
+$fields = new Thememeta();
+
+$this->footer_begin();
+?>
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<div class="site-info">
 		<?php
-		$copy = Boilerplate\Theme\Admin\Theme_Settings::get( 'copyright_text' );
+		$copy = $fields->copyright_text;
 		echo esc_html( $copy );
 		?>
 

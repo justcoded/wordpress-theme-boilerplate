@@ -8,8 +8,6 @@
 use JustCoded\WP\Framework\Objects\Postmeta;
 use JustCoded\WP\Framework\Web\View;
 
-// TODO: print fields from ACF.
-
 // Post meta object.
 $fields = new Postmeta();
 

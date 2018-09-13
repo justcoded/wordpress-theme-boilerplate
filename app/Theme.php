@@ -1,6 +1,8 @@
 <?php
+
 namespace Boilerplate\Theme;
 
+use Boilerplate\Theme\Fields\Employee_Fields;
 use Boilerplate\Theme\Fields\Page_Fields;
 use Boilerplate\Theme\Fields\Theme_Fields;
 use Boilerplate\Theme\Fields\User_Fields;
@@ -10,6 +12,7 @@ use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
 use JustCoded\WP\Framework\Supports\Just_Custom_Fields;
+use JustCoded\WP\Framework\ACF\ACF_Support;
 use JustCoded\WP\Framework\Supports\Just_Post_Preview;
 use JustCoded\WP\Framework\Supports\Just_Responsive_Images;
 use JustCoded\WP\Framework\Supports\Just_Tinymce;
@@ -60,8 +63,10 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Additional classes initialize
 	 */
 	public function init() {
-		// TODO: ACF check and enable support ACF (collapse sections, our styles).
-		Theme_Fields::instance();
+		if ( ACF_Support::check_requirements() ) {
+			ACF_Support::instance();
+			Theme_Fields::instance();
+		}
 	}
 
 	/**
@@ -127,6 +132,7 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 		// register fields.
 		Page_Fields::instance();
 		User_Fields::instance();
+		Employee_Fields::instance();
 	}
 
 	/**
