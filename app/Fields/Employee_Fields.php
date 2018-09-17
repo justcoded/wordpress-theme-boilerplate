@@ -14,7 +14,7 @@ class Employee_Fields extends ACF_Register {
 		$this->remove_content_editor( Employee::$ID );
 
 		$this->has(
-			$this->build( 'employee_information' )
+			$this->build()
 				->addSelect( 'level' )
 					->addChoices([
 						''       => '',
