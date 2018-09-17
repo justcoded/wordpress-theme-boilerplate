@@ -61,11 +61,12 @@ class Employee extends Post_Type {
 			'post_featured_image' => $fkr->image_attachment( 1280, 920 ),
 
 			// Simple meta data.
-			'_position'           => $fkr->job_title(),
-			'_bio'                => $fkr->text( 200 ),
+			'level'               => $fkr->faker->randomElement( [ '', 'Junior', 'Middle', 'Senior' ] ),
+			'position'            => $fkr->job_title(),
+			'bio'                 => $fkr->text( 200 ),
 
-			// Collection example.
-			'_gallery'            => $fkr->repeater(
+			// Repeater example.
+			'gallery'             => $fkr->repeater(
 				[ 1, 5 ],
 				function () use ( $fkr ) {
 					return [

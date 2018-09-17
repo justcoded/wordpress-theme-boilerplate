@@ -12,7 +12,6 @@ class Page_Fields extends ACF_Register {
 	 * Init fields configuration method
 	 */
 	public function init() {
-		$this->hide_content = 'page';
 		$this->has(
 			$this->build()
 				->addFields( Fields_Generic::get( 'subtitle' ) )

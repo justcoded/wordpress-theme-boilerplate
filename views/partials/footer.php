@@ -2,16 +2,13 @@
 
 use JustCoded\WP\Framework\Objects\Thememeta;
 
-$fields = new Thememeta();
+$theme = new Thememeta();
 
 $this->footer_begin();
 ?>
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<div class="site-info">
-		<?php
-		$copy = $fields->copyright_text;
-		echo esc_html( $copy );
-		?>
+		<?php echo esc_html( $theme->copyright_text ); ?>
 
 		<span class="sep"> | </span>
 
