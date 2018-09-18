@@ -50,10 +50,10 @@ if ( ! class_exists( 'Just_Theme_Framework_Checker' ) ) {
 				'WordPress Theme Framework',
 				'https://github.com/justcoded/wordpress-theme-framework',
 			),
-			'titan-framework/titan-framework.php' => array(
-				'\TitanFrameworkPlugin',
-				'Titan Framework',
-				'//wordpress.org/plugins/titan-framework',
+			'advanced-custom-fields-pro/acf.php' => array(
+				'\ACF',
+				'Advanced Custom Fields',
+				'https://www.advancedcustomfields.com/pro/',
 			),
 		);
 

@@ -21,17 +21,14 @@ while ( have_posts() ) :
 		<header class="entry-header">
 			<?php the_title( '<h2 class="entry-title">', '</h2>' ); ?>
 		</header><!-- .entry-header -->
-		<div>
+		<div class="entry-content">
 			<?php if ( $fields->position ) : ?>
-				<h3><?php echo esc_html( $fields->position ); ?></h3>
+				<h3><?php echo esc_html( $fields->level . ' ' . $fields->position ); ?></h3>
 			<?php endif; ?>
 			<?php if ( $fields->bio ) : ?>
-				<p><?php echo esc_html( $fields->bio ); ?></p>
+				<p><?php echo nl2br( esc_html( $fields->bio ) ); ?></p>
 			<?php endif; ?>
 		</div>
-		<div class="entry-content">
-			<?php the_content(); ?>
-		</div><!-- .entry-content -->
 	</article><!-- #post-## -->
 
 <?php endwhile; // End of the loop. ?>
