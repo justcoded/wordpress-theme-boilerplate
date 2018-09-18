@@ -27,8 +27,7 @@ if ( ! function_exists( 'boilerplate_theme_starter' ) ) {
 	function boilerplate_theme_starter() {
 		new \JustCoded\WP\Framework\Autoload( 'Boilerplate\Theme', get_template_directory() . '/app' );
 
-		$theme    = \Boilerplate\Theme\Theme::instance();
-		$settings = \Boilerplate\Theme\Admin\Theme_Settings::instance();
+		$theme = \Boilerplate\Theme\Theme::instance();
 	}
 }
 

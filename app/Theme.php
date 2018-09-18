@@ -1,12 +1,18 @@
 <?php
+
 namespace Boilerplate\Theme;
 
+use Boilerplate\Theme\Fields\Employee_Fields;
+use Boilerplate\Theme\Fields\Page_Fields;
+use Boilerplate\Theme\Fields\Theme_Fields;
+use Boilerplate\Theme\Fields\User_Fields;
 use Boilerplate\Theme\Page_Builder\SiteOrigin_Panels;
 use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
 use JustCoded\WP\Framework\Supports\Just_Custom_Fields;
+use JustCoded\WP\Framework\ACF\ACF_Support;
 use JustCoded\WP\Framework\Supports\Just_Post_Preview;
 use JustCoded\WP\Framework\Supports\Just_Responsive_Images;
 use JustCoded\WP\Framework\Supports\Just_Tinymce;
@@ -57,8 +63,9 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 * Additional classes initialize
 	 */
 	public function init() {
-		if ( SiteOrigin_Panels::plugin_active() ) {
-			SiteOrigin_Panels::instance();
+		if ( ACF_Support::check_requirements() ) {
+			ACF_Support::instance();
+			Theme_Fields::instance();
 		}
 	}
 
@@ -121,6 +128,11 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_post_types() {
 		Employee::instance();
+
+		// register fields.
+		Page_Fields::instance();
+		User_Fields::instance();
+		Employee_Fields::instance();
 	}
 
 	/**
@@ -128,15 +140,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function register_taxonomies() {
 		Department::instance();
-	}
-
-	/**
-	 * Register custo widgets
-	 */
-	public function register_widgets() {
-		if ( SiteOrigin_Panels::widgets_bundle_active() ) {
-			register_widget( '\Boilerplate\Theme\Widgets\Hero_Slider_Widget' );
-		}
 	}
 
 	/**
