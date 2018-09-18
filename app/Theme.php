@@ -147,8 +147,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function support_plugins() {
 		Just_Responsive_Images::instance();
-		Just_Custom_Fields::instance();
-		Just_Post_Preview::instance();
 		Just_Tinymce::instance();
 
 		if ( Autoptimize::check_requirements() ) {
