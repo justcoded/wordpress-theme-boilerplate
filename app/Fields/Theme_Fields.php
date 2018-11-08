@@ -26,8 +26,10 @@ class Theme_Fields extends ACF_Register {
 
 	protected function general_tab() {
 		return $this->build( 'general_options' )
+			->addImage( 'site_logo' )
 			->addText( 'copyright_text' )
 			->setDefaultValue( '&copy; ' . date( 'Y' ) . '. All rights reserved.' )
+			->addImage( 'image_placeholder', array( 'return_format' => 'id' ) )
 			->getRootContext();
 	}
 
