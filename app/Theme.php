@@ -7,14 +7,11 @@ use Boilerplate\Theme\Fields\Page_Fields;
 use Boilerplate\Theme\Fields\Theme_Fields;
 use Boilerplate\Theme\Fields\User_Fields;
 use Boilerplate\Theme\Job\Remove_Revisions;
-use Boilerplate\Theme\Page_Builder\SiteOrigin_Panels;
 use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
-use JustCoded\WP\Framework\Supports\Just_Custom_Fields;
 use JustCoded\WP\Framework\ACF\ACF_Support;
-use JustCoded\WP\Framework\Supports\Just_Post_Preview;
 use JustCoded\WP\Framework\Supports\Just_Responsive_Images;
 use JustCoded\WP\Framework\Supports\Just_Tinymce;
 
@@ -151,8 +148,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	 */
 	public function support_plugins() {
 		Just_Responsive_Images::instance();
-		Just_Custom_Fields::instance();
-		Just_Post_Preview::instance();
 		Just_Tinymce::instance();
 
 		if ( Autoptimize::check_requirements() ) {

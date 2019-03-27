@@ -13,7 +13,9 @@ class Theme_Fields extends ACF_Register {
 		$this->add_options_page( 'Theme options' );
 
 		$this->has(
-			$this->build()
+			$this->build('theme_options', [
+				'style' => 'seamless',
+			])
 				->addTab( 'General' )
 				->addFields( $this->general_tab() )
 				->addTab( 'Socials Links' )
