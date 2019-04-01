@@ -163,4 +163,8 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 			Autoptimize::instance();
 		}
 	}
+
+	public function register_api_endpoints() {
+		RestExample::instance();
+	}
 }
