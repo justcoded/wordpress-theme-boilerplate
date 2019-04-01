@@ -15,28 +15,37 @@ class Remove_Revisions extends Cronjob {
 	/**
 	 * @var string
 	 */
-	public $ID = 'remove_revisions_events_cronjob';
+	protected $ID = 'remove_revisions_events_cronjob';
 
 	/**
 	 * @var string
 	 */
-	public $start = 'yesterday midnight';
+	protected $start = 'yesterday midnight';
 
 	/**
 	 * @var string
 	 */
-	public $schedule = 'once_week';
+	protected $schedule = 'once_week';
 
 	/**
 	 * @var string
 	 */
-	public $schedule_description = 'Once a Week';
+	protected $schedule_description = 'Once a Week';
 
 	/**
 	 * @var int
 	 */
-	public $interval = 604800;
+	protected $interval = 604800;
 
+	/**
+	 * @var bool $debug Debug status. Default 'false'. Accepts 'true', 'false'.
+	 */
+	protected $debug = false;
+
+	/**
+	 * @var string $debug_type Debug type. Default 'manual'. Accepts 'auto', 'manual'.
+	 */
+	protected $debug_type = 'manual';
 
 	/**
 	 * Update_Option constructor.
