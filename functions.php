@@ -27,11 +27,6 @@ if ( ! function_exists( 'boilerplate_theme_starter' ) ) {
 	function boilerplate_theme_starter() {
 		new \JustCoded\WP\Framework\Autoload( 'Boilerplate\Theme', get_template_directory() . '/app' );
 
-		/**
-		 * create REST api namespace by theme name
-		 */
-		defined( 'REST_NAMESPACE') ?: define('REST_NAMESPACE', strtolower('Boilerplate'));
-
 		$theme = \Boilerplate\Theme\Theme::instance();
 	}
 }
