@@ -68,9 +68,6 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 			ACF_Support::instance();
 			Theme_Fields::instance();
 		}
-
-		//rest init
-		RestExample::instance();
 	}
 
 	/**
@@ -165,9 +162,5 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 		if ( Autoptimize::check_requirements() ) {
 			Autoptimize::instance();
 		}
-	}
-
-	public function register_api_endpoints() {
-		RestExample::instance();
 	}
 }
