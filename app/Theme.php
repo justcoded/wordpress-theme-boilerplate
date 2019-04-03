@@ -68,6 +68,9 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 			ACF_Support::instance();
 			Theme_Fields::instance();
 		}
+
+		//rest init
+		RestExample::instance();
 	}
 
 	/**

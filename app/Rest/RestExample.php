@@ -2,30 +2,92 @@
 
 namespace Boilerplate\Theme\Rest;
 
-use JustCoded\WP\Framework\Objects\Rest;
+use JustCoded\WP\Framework\Objects\RestController;
+
 /**
  * Custom json rest endpoint to illustrate like it work
  */
-class RestExample extends Rest {
+class RestExample extends RestController {
+
 	/**
-	 * ROUTE - rest endpoint in format /wp-json/Boilerplate/$ROUTE
-	 *
 	 * @var string
 	 */
+	protected $namespace = 'rest_example';
 
-	public static $ROUTE = '/rest_example/(?P<id>\d+)';
+	/**
+	 * @var array
+	 */
+	protected $slugs = [
+		'id'   => '/id/(?P<id>\d+)',
+		'slug' => '/slug/(?P<slug>\S+)',
+	];
 
+	/**
+	 * Init
+	 *
+	 * @throws \Exception
+	 */
 	public function init() {
-		$this->method              = self::METHOD_GET;
-		$this->validate_args['id'] = [
-			'validate_callback' => function ( $param, $request, $key ) {
-				return is_numeric( $param );
-			}
-		];
+		$this->add_route( $this->slugs['id'], 'GET', [ $this, 'example_id' ], [
+			'id' => [
+				'validate_callback' => [ $this, 'validate_id' ]
+			]
+		] );
+
+		$this->add_route( $this->slugs['slug'], 'GET', [ $this, 'example_slug' ], [
+			'slug' => [
+				'validate_callback' => [ $this, 'validate_slug' ]
+			]
+		] );
 	}
 
-	public function callback( $data ) {
+	/**
+	 * Example_id
+	 *
+	 * @param \WP_REST_Request $data
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function example_id( \WP_REST_Request $data ) {
+		$params = $data->get_params();
 
-		return json_encode( $data['id'] );
+		return $this->response( get_post( $params['id'] ) );
+	}
+
+	/**
+	 * Example_slug
+	 *
+	 * @param \WP_REST_Request $data
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function example_slug( \WP_REST_Request $data ) {
+		return $this->response( $data->get_params() );
+	}
+
+	/**
+	 * Validate_id
+	 *
+	 * @param $param
+	 * @param $request
+	 * @param $key
+	 *
+	 * @return bool
+	 */
+	public function validate_id( $param, $request, $key ) {
+		return is_numeric( $param );
+	}
+
+	/**
+	 * Validate_slug
+	 *
+	 * @param $param
+	 * @param $request
+	 * @param $key
+	 *
+	 * @return bool
+	 */
+	public function validate_slug( $param, $request, $key ) {
+		return is_string( $param );
 	}
 }
