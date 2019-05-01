@@ -20,6 +20,15 @@ function boilerplate_body_classes( $classes ) {
 	return $classes;
 }
 
+/**
+ * Support previous versions of WordPress.
+ */
+if ( ! function_exists( 'wp_body_open' ) ) {
+	function wp_body_open() {
+		do_action( 'wp_body_open' );
+	}
+}
+
 add_filter( 'body_class', 'boilerplate_body_classes' );
 
 //Remove emoji
