@@ -20,6 +20,8 @@ function boilerplate_body_classes( $classes ) {
 	return $classes;
 }
 
+add_filter( 'body_class', 'boilerplate_body_classes' );
+
 /**
  * Support previous versions of WordPress.
  */
@@ -28,8 +30,6 @@ if ( ! function_exists( 'wp_body_open' ) ) {
 		do_action( 'wp_body_open' );
 	}
 }
-
-add_filter( 'body_class', 'boilerplate_body_classes' );
 
 //Remove emoji
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
