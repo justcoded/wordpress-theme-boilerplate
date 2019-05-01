@@ -4,4 +4,3 @@
  *
  * For example, it can be some kind of date formatters, array sorters, etc.
  */
-
