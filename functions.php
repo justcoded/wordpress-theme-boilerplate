@@ -16,23 +16,8 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/hooks.php';
 require_once get_template_directory() . '/inc/template-funcs.php';
 
-/**
- * Wrap theme start code into a function to be able to use child theme.
- * this code will be executed inside child theme.
- */
-if ( ! function_exists( 'boilerplate_theme_starter' ) ) {
-	/**
-	 * Theme launcher function
-	 */
-	function boilerplate_theme_starter() {
-		new \JustCoded\WP\Framework\Autoload( 'Boilerplate\Theme', get_template_directory() . '/app' );
+$theme = \JustCoded\WP\Framework\Theme_Starter\Theme_Starter::instance();
 
-		$theme = \Boilerplate\Theme\Theme::instance();
-	}
+if ( ! $theme->is_theme_created() ) {
+	$theme->start_theme( 'boilerplate_namespace' );
 }
-
-/**
- * Finally run our Theme setup
- * and ThemeOptions setup
- */
-boilerplate_theme_starter();
