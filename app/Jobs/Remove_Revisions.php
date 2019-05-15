@@ -1,11 +1,12 @@
 <?php
 
-namespace Boilerplate\Theme\Job;
+namespace Boilerplate\Theme\Jobs;
 
 use JustCoded\WP\Framework\Objects\Cronjob;
 
 /**
  * Class Remove_Revisions
+ *
  * @package Boilerplate\Theme\Jobs
  */
 class Remove_Revisions extends Cronjob {
@@ -15,7 +16,7 @@ class Remove_Revisions extends Cronjob {
 	/**
 	 * @var string
 	 */
-	protected $ID = 'remove_revisions_events_cronjob';
+	protected $ID = 'remove_revisions_cronjob';
 
 	/**
 	 * @var string
@@ -38,28 +39,9 @@ class Remove_Revisions extends Cronjob {
 	protected $interval = 604800;
 
 	/**
-	 * @var bool $debug Debug status. Default 'false'. Accepts 'true', 'false'.
+	 * Handle action
 	 */
-	protected $debug = false;
-
-	/**
-	 * @var string $debug_type Debug type. Default 'manual'. Accepts 'auto', 'manual'.
-	 */
-	protected $debug_type = 'manual';
-
-	/**
-	 * Update_Option constructor.
-	 *
-	 * @throws \Exception
-	 */
-	protected function __construct() {
-		parent::__construct();
-	}
-
-	/**
-	 * Run action
-	 */
-	public function run() {
+	public function handle() {
 		global $wpdb;
 
 		$post_ids = $wpdb->get_results( "SELECT id FROM {$wpdb->prefix}posts as p WHERE p.post_type = 'post'", ARRAY_A );
@@ -103,8 +85,7 @@ class Remove_Revisions extends Cronjob {
 	protected function remove_revisions( $ids ) {
 		global $wpdb;
 
-		$remove_ids_sql = "DELETE FROM {$wpdb->prefix}posts WHERE ID IN ({$ids});";
-
-		$wpdb->query( $remove_ids_sql );
+		$wpdb->query( "DELETE FROM {$wpdb->prefix}posts WHERE ID IN ({$ids});" );
+		$wpdb->query( "DELETE FROM {$wpdb->prefix}postmeta WHERE post_id IN ({$ids});" );
 	}
 }
