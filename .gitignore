@@ -6,6 +6,7 @@ wp-host-update*
 /nbproject/private/
 /nbproject/
 .project
+.idea
 
 # composer
 composer.lock
