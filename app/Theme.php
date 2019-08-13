@@ -60,6 +60,18 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	);
 
 	/**
+	 * Disable gutenberg for posts and custom post type.
+	 *
+	 * Set TRUE to disable it totally.
+	 * Set ARRAY to disable only specific ones.
+	 *
+	 * @var array|bool $disable_gutenberg
+	 */
+	public $disable_gutenberg = array(
+		'page',
+	);
+
+	/**
 	 * Additional classes initialize
 	 */
 	public function init() {
