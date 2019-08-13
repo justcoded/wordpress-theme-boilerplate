@@ -1,6 +1,6 @@
 <?php
 
-namespace Boilerplate\Theme\Jobs;
+namespace TheTimes\Theme\Jobs;
 
 use JustCoded\WP\Framework\Objects\Cronjob;
 
@@ -14,26 +14,36 @@ class Remove_Revisions extends Cronjob {
 	const COUNT_REVISION = 10;
 
 	/**
+	 * Cron id
+	 *
 	 * @var string
 	 */
 	protected $ID = 'remove_revisions_cronjob';
 
 	/**
-	 * @var string
+	 * Start time.
+	 *
+	 * @var int|string
 	 */
 	protected $start = 'yesterday midnight';
 
 	/**
+	 * Schedule name.
+	 *
 	 * @var string
 	 */
-	protected $schedule = 'once_week';
+	protected $schedule = 'weekly';
 
 	/**
+	 * Cronjob schedule description.
+	 *
 	 * @var string
 	 */
 	protected $schedule_description = 'Once a Week';
 
 	/**
+	 * Interval in seconds.
+	 *
 	 * @var int
 	 */
 	protected $interval = 604800;
@@ -44,12 +54,12 @@ class Remove_Revisions extends Cronjob {
 	public function handle() {
 		global $wpdb;
 
-		$post_ids = $wpdb->get_results( "SELECT id FROM {$wpdb->prefix}posts as p WHERE p.post_type = 'post'", ARRAY_A );
+		$post_ids = $wpdb->get_results( "SELECT id FROM {$wpdb->posts} as p WHERE p.post_type = 'post'", ARRAY_A );
 
 		foreach ( $post_ids as $key => $id ) {
 			$revisions = $wpdb->get_results(
 				$wpdb->prepare(
-					"SELECT id FROM {$wpdb->prefix}posts as p WHERE p.post_type = 'revision' AND p.post_parent = %d",
+					"SELECT id FROM {$wpdb->posts} as p WHERE p.post_type = 'revision' AND p.post_parent = %d",
 					$id['id']
 				),
 				ARRAY_A
@@ -85,7 +95,7 @@ class Remove_Revisions extends Cronjob {
 	protected function remove_revisions( $ids ) {
 		global $wpdb;
 
-		$wpdb->query( "DELETE FROM {$wpdb->prefix}posts WHERE ID IN ({$ids});" );
-		$wpdb->query( "DELETE FROM {$wpdb->prefix}postmeta WHERE post_id IN ({$ids});" );
+		$wpdb->query( "DELETE FROM {$wpdb->posts} WHERE ID IN ({$ids});" );
+		$wpdb->query( "DELETE FROM {$wpdb->postmeta} WHERE post_id IN ({$ids});" );
 	}
 }
