@@ -1,6 +1,6 @@
 <?php
 
-namespace TheTimes\Theme\Jobs;
+namespace Boilerplate\Theme\Jobs;
 
 use JustCoded\WP\Framework\Objects\Cronjob;
 
@@ -28,18 +28,11 @@ class Remove_Revisions extends Cronjob {
 	protected $start = 'yesterday midnight';
 
 	/**
-	 * Schedule name.
+	 * Frequency name.
 	 *
 	 * @var string
 	 */
-	protected $schedule = 'weekly';
-
-	/**
-	 * Cronjob schedule description.
-	 *
-	 * @var string
-	 */
-	protected $schedule_description = 'Once a Week';
+	protected $frequency = 'weekly';
 
 	/**
 	 * Interval in seconds.
