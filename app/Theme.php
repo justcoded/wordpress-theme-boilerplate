@@ -6,6 +6,8 @@ use Boilerplate\Theme\Fields\Employee_Fields;
 use Boilerplate\Theme\Fields\Page_Fields;
 use Boilerplate\Theme\Fields\Theme_Fields;
 use Boilerplate\Theme\Fields\User_Fields;
+use Boilerplate\Theme\Fields\Block_Fields;
+use Boilerplate\Theme\Blocks\Testimonials_Block;
 use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
@@ -129,7 +131,9 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 		// register fields.
 		Page_Fields::instance();
 		User_Fields::instance();
+		Block_Fields::instance();
 		Employee_Fields::instance();
+		Testimonials_Block::instance();
 	}
 
 	/**
