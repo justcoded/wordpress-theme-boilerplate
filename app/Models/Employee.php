@@ -41,4 +41,24 @@ class Employee extends Model {
 		), __METHOD__ );
 	}
 
+	/**
+	 * Get query to be used in rest response
+	 *
+	 * @param array $args Arguments.
+	 *
+	 * @return \WP_Query  query object to be used in loop
+	 */
+	public function get_query_rest( $args ) {
+		$default = array(
+			'post_type'      => Post_Type\Employee::$ID,
+			'post_status'    => Post_Type\Employee::STATUS_PUBLISH,
+			'order'          => Post_Type\Employee::SORT_DESC,
+			'orderby'        => Post_Type\Employee::ORDERBY_DATE,
+			'posts_per_page' => 4,
+		);
+
+		$args = wp_parse_args( $args, $default );
+
+		return $this->wp_query( $args, __METHOD__ );
+	}
 }
