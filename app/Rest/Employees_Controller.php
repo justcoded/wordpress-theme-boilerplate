@@ -69,13 +69,7 @@ class Employees_Controller extends Rest_Controller {
 			\WP_REST_Server::DELETABLE,
 			'/(?P<id>\d+)',
 			array( $this, 'delete_item' ),
-			array_merge( $args, array(
-				'force' => array(
-					'type'        => 'boolean',
-					'default'     => false,
-					'description' => __( 'Whether to bypass trash and force deletion.' ),
-				),
-			) ),
+			$args,
 			array( $this, 'item_permissions_check' )
 		);
 	}
@@ -119,13 +113,13 @@ class Employees_Controller extends Rest_Controller {
 		}
 
 		$employee_model  = new Employee_Model();
-		$employees_posts = $employee_model->get_query_rest( $args );
+		$employees_posts = $employee_model->get_query( $args );
 
 		return $this->response( $employees_posts->get_posts() );
 	}
 
 	/**
-	 * Creat Employee post.
+	 * Create Employee post.
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 *
@@ -133,15 +127,7 @@ class Employees_Controller extends Rest_Controller {
 	 */
 	public function create_item( $request ) {
 		$prepared_post = $this->prepare_item_for_database( $request );
-
-		if ( is_wp_error( $prepared_post ) ) {
-			return $prepared_post;
-		}
-
-		$prepared_post->post_type   = Employee_Post_Type::$ID;
-		$prepared_post->post_status = Employee_Post_Type::STATUS_PUBLISH;
-
-		$post_id = wp_insert_post( wp_slash( (array) $prepared_post ), true );
+		$post_id       = wp_insert_post( wp_slash( (array) $prepared_post ), true );
 
 		if ( is_wp_error( $post_id ) ) {
 			$post_id->add_data( array( 'status' => 400 ) );
@@ -155,15 +141,9 @@ class Employees_Controller extends Rest_Controller {
 
 		$schema = $this->get_item_schema();
 
-		if ( ! empty( $schema['properties']['acf_field'] ) && isset( $request['acf_field'] ) ) {
-			$acf_update = $this->update_acf_value( $request['acf_field'], $post_id );
-
-			if ( is_wp_error( $acf_update ) ) {
-				return $acf_update;
-			}
+		if ( ! empty( $schema['properties']['custom_fields'] ) && ! empty( $prepared_post->custom_fields ) ) {
+			$this->update_acf_fields( $post_id, (array) $prepared_post->custom_fields );
 		}
-
-		$request->set_param( 'context', 'edit' );
 
 		return $this->response(
 			[
@@ -195,7 +175,7 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Get_item
+	 * Get Item by ID
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 *
@@ -211,7 +191,7 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Get_item
+	 * Update Employee post.
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 *
@@ -219,15 +199,7 @@ class Employees_Controller extends Rest_Controller {
 	 */
 	public function update_item( $request ) {
 		$prepared_post = $this->prepare_item_for_database( $request );
-
-		if ( is_wp_error( $prepared_post ) ) {
-			return $prepared_post;
-		}
-
-		$prepared_post->post_type   = Employee_Post_Type::$ID;
-		$prepared_post->post_status = Employee_Post_Type::STATUS_PUBLISH;
-
-		$post_id = wp_update_post( wp_slash( (array) $prepared_post ), true );
+		$post_id       = wp_update_post( wp_slash( (array) $prepared_post ), true );
 
 		if ( is_wp_error( $post_id ) ) {
 			$post_id->add_data( array( 'status' => 400 ) );
@@ -241,15 +213,9 @@ class Employees_Controller extends Rest_Controller {
 
 		$schema = $this->get_item_schema();
 
-		if ( ! empty( $schema['properties']['acf_field'] ) && isset( $request['acf_field'] ) ) {
-			$acf_update = $this->update_acf_value( $request['acf_field'], $post_id );
-
-			if ( is_wp_error( $acf_update ) ) {
-				return $acf_update;
-			}
+		if ( ! empty( $schema['properties']['custom_fields'] ) && ! empty( $prepared_post->custom_fields ) ) {
+			$this->update_acf_fields( $post_id, (array) $prepared_post->custom_fields );
 		}
-
-		$request->set_param( 'context', 'edit' );
 
 		return $this->response(
 			[
@@ -262,15 +228,13 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Get_item
+	 * Delete Employee post.
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 *
 	 * @return \WP_REST_Response
 	 */
 	public function delete_item( $request ) {
-		$request->set_param( 'context', 'edit' );
-
 		$result = wp_delete_post( $request['id'], true );
 
 		if ( is_wp_error( $result ) ) {
@@ -286,11 +250,11 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Item_permissions_check
+	 * Checks if the item exists in database.
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 *
-	 * @return bool|\WP_Error True if the request has read access for the item, WP_Error object otherwise.
+	 * @return bool|\WP_Error
 	 */
 	public function item_permissions_check( $request ) {
 		$post = $this->get_employee( $request['id'] );
@@ -302,7 +266,7 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Get_collection_params
+	 * Retrieves the query params for the posts collection.
 	 *
 	 * @return array
 	 */
@@ -363,7 +327,7 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Get_item_schema
+	 * Retrieves the item's schema, conforming to JSON Schema.
 	 *
 	 * @return array
 	 */
@@ -373,17 +337,36 @@ class Employees_Controller extends Rest_Controller {
 			'title'      => Employee_Post_Type::$ID,
 			'type'       => 'object',
 			'properties' => array(
-				'title'     => array(
+				'title'         => array(
 					'description' => sprintf( __( 'The title for the %s.' ), Employee_Post_Type::$ID ),
 					'type'        => 'string',
 				),
-				'content'   => array(
+				'content'       => array(
 					'description' => sprintf( __( 'The content for the %s.' ), Employee_Post_Type::$ID ),
 					'type'        => 'string',
 				),
-				'acf_field' => array(
-					'description' => sprintf( __( 'The ACF field for the %s.' ), Employee_Post_Type::$ID ),
+				'custom_fields' => array(
+					'description' => __( 'Custom fields.' ),
 					'type'        => 'object',
+					'properties'  => array(
+						'level'    => array(
+							'description' => sprintf( __( 'The level for the %s.' ), Employee_Post_Type::$ID ),
+							'type'        => 'string',
+							'enum'        => array(
+								'Junior',
+								'Middle',
+								'Senior',
+							),
+						),
+						'position' => array(
+							'description' => sprintf( __( 'The position for the %s.' ), Employee_Post_Type::$ID ),
+							'type'        => 'string',
+						),
+						'bio'      => array(
+							'description' => sprintf( __( 'The bio for the %s.' ), Employee_Post_Type::$ID ),
+							'type'        => 'string',
+						),
+					),
 				),
 			),
 		);
@@ -392,64 +375,46 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Prepare_item_for_database
+	 * Prepares an employee post for creating or update.
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
 	 *
 	 * @return object|\stdClass|\WP_Error
 	 */
 	protected function prepare_item_for_database( $request ) {
-		$prepared_post = new \stdClass();
+		$prepared_post     = new \stdClass();
+		$prepared_post->ID = $request['id'];
 
-		if ( isset( $request['id'] ) ) {
-			$existing_post = $this->get_employee( $request['id'] );
-			if ( is_wp_error( $existing_post ) ) {
-				return $existing_post;
-			}
+		$schema             = $this->get_item_schema();
+		$parameter_mappings = array(
+			'title'         => 'post_title',
+			'content'       => 'post_content',
+			'custom_fields' => 'custom_fields',
+		);
 
-			$prepared_post->ID = $existing_post->ID;
-		}
-
-		$schema = $this->get_item_schema();
-
-		if ( ! empty( $schema['properties']['title'] ) && isset( $request['title'] ) ) {
-			if ( is_string( $request['title'] ) ) {
-				$prepared_post->post_title = $request['title'];
-			}
-		}
-
-		if ( ! empty( $schema['properties']['content'] ) && isset( $request['content'] ) ) {
-			if ( is_string( $request['content'] ) ) {
-				$prepared_post->post_content = $request['content'];
-			}
-		}
-
-		return $prepared_post;
-
-	}
-
-	/**
-	 * Update_acf_value
-	 *
-	 * @param array $args Arguments.
-	 * @param int   $post_id Post ID.
-	 *
-	 * @return \WP_Error|bool
-	 */
-	private function update_acf_value( $args, $post_id ) {
-		if ( empty( $args ) ) {
-			return new \WP_Error( 'rest_employee_empty_acf_object', __( 'Empty ACF fields object.' ), array( 'status' => 500 ) );
-		}
-
-		foreach ( $args as $selector => $value ) {
-			if ( empty( $value ) ) {
+		foreach ( $schema['properties'] as $property_name => $property_value ) {
+			if ( empty( $property_name ) || empty( $request[ $property_name ] ) ) {
 				continue;
 			}
 
-			update_field( $selector, $value, $post_id );
+			if ( is_string( $request[ $property_name ] ) ) {
+				$property                 = $parameter_mappings[ $property_name ];
+				$prepared_post->$property = $request[ $property_name ];
+			}
+
+			if ( is_array( $request[ $property_name ] ) ) {
+				foreach ( $property_value['properties'] as $custom_key => $custom_value ) {
+					if ( is_string( $request[ $property_name ][ $custom_key ] ) ) {
+						$prepared_post->custom_fields->$custom_key = $request[ $property_name ][ $custom_key ];
+					}
+				}
+			}
 		}
 
-		return true;
+		$prepared_post->post_type   = Employee_Post_Type::$ID;
+		$prepared_post->post_status = Employee_Post_Type::STATUS_PUBLISH;
+
+		return $prepared_post;
 	}
 
 	/**
