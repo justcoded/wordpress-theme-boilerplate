@@ -127,22 +127,10 @@ class Employees_Controller extends Rest_Controller {
 	 */
 	public function create_item( $request ) {
 		$prepared_post = $this->prepare_item_for_database( $request );
-		$post_id       = wp_insert_post( wp_slash( (array) $prepared_post ), true );
+		$post_id       = $this->create_update_employee( $prepared_post );
 
 		if ( is_wp_error( $post_id ) ) {
-			$post_id->add_data( array( 'status' => 400 ) );
-
-			if ( 'db_insert_error' === $post_id->get_error_code() ) {
-				$post_id->add_data( array( 'status' => 500 ) );
-			}
-
 			return $post_id;
-		}
-
-		$schema = $this->get_item_schema();
-
-		if ( ! empty( $schema['properties']['custom_fields'] ) && ! empty( $prepared_post->custom_fields ) ) {
-			$this->update_acf_fields( $post_id, (array) $prepared_post->custom_fields );
 		}
 
 		return $this->response(
@@ -199,22 +187,10 @@ class Employees_Controller extends Rest_Controller {
 	 */
 	public function update_item( $request ) {
 		$prepared_post = $this->prepare_item_for_database( $request );
-		$post_id       = wp_update_post( wp_slash( (array) $prepared_post ), true );
+		$post_id       = $this->create_update_employee( $prepared_post, 'update' );
 
 		if ( is_wp_error( $post_id ) ) {
-			$post_id->add_data( array( 'status' => 400 ) );
-
-			if ( 'db_insert_error' === $post_id->get_error_code() ) {
-				$post_id->add_data( array( 'status' => 500 ) );
-			}
-
 			return $post_id;
-		}
-
-		$schema = $this->get_item_schema();
-
-		if ( ! empty( $schema['properties']['custom_fields'] ) && ! empty( $prepared_post->custom_fields ) ) {
-			$this->update_acf_fields( $post_id, (array) $prepared_post->custom_fields );
 		}
 
 		return $this->response(
@@ -375,6 +351,48 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
+	 * Create_update_employee
+	 *
+	 * @param object $prepared_post Prepared post object.
+	 * @param string $type Action type.
+	 *
+	 * @return int|\WP_Error
+	 */
+	protected function create_update_employee( $prepared_post, $type = 'create' ) {
+		$post_id = null;
+
+		if ( 'create' === $type ) {
+			$post_id = wp_insert_post( wp_slash( (array) $prepared_post ), true );
+		}
+
+		if ( 'update' === $type ) {
+			$post_id = wp_update_post( wp_slash( (array) $prepared_post ), true );
+		}
+
+		if ( empty( $post_id ) || empty( $type ) ) {
+			return new \WP_Error( 'rest_employee_invalid_type', __( 'Invalid action type.' ), array( 'status' => 500 ) );
+		}
+
+		if ( is_wp_error( $post_id ) ) {
+			$post_id->add_data( array( 'status' => 400 ) );
+
+			if ( 'db_insert_error' === $post_id->get_error_code() ) {
+				$post_id->add_data( array( 'status' => 500 ) );
+			}
+
+			return $post_id;
+		}
+
+		$schema = $this->get_item_schema();
+
+		if ( ! empty( $schema['properties']['custom_fields'] ) && ! empty( $prepared_post->custom_fields ) ) {
+			$this->update_acf_fields( $post_id, (array) $prepared_post->custom_fields );
+		}
+
+		return $post_id;
+	}
+
+	/**
 	 * Prepares an employee post for creating or update.
 	 *
 	 * @param \WP_REST_Request $request Full details about the request.
@@ -382,34 +400,7 @@ class Employees_Controller extends Rest_Controller {
 	 * @return object|\stdClass|\WP_Error
 	 */
 	protected function prepare_item_for_database( $request ) {
-		$prepared_post     = new \stdClass();
-		$prepared_post->ID = $request['id'];
-
-		$schema             = $this->get_item_schema();
-		$parameter_mappings = array(
-			'title'         => 'post_title',
-			'content'       => 'post_content',
-			'custom_fields' => 'custom_fields',
-		);
-
-		foreach ( $schema['properties'] as $property_name => $property_value ) {
-			if ( empty( $property_name ) || empty( $request[ $property_name ] ) ) {
-				continue;
-			}
-
-			if ( is_string( $request[ $property_name ] ) ) {
-				$property                 = $parameter_mappings[ $property_name ];
-				$prepared_post->$property = $request[ $property_name ];
-			}
-
-			if ( is_array( $request[ $property_name ] ) ) {
-				foreach ( $property_value['properties'] as $custom_key => $custom_value ) {
-					if ( is_string( $request[ $property_name ][ $custom_key ] ) ) {
-						$prepared_post->custom_fields->$custom_key = $request[ $property_name ][ $custom_key ];
-					}
-				}
-			}
-		}
+		$prepared_post = parent::prepare_item_for_database( $request );
 
 		$prepared_post->post_type   = Employee_Post_Type::$ID;
 		$prepared_post->post_status = Employee_Post_Type::STATUS_PUBLISH;
