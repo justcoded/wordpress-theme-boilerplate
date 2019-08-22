@@ -44,6 +44,6 @@ class Employee extends Model {
 
 		$args = wp_parse_args( $args, $default );
 
-		return $this->wp_query( $args, __METHOD__ );
+		return $this->archive_query( $args, __METHOD__ );
 	}
 }
