@@ -187,7 +187,7 @@ class Employees_Controller extends Rest_Controller {
 	 */
 	public function update_item( $request ) {
 		$prepared_post = $this->prepare_item_for_database( $request );
-		$post_id       = $this->create_update_employee( $prepared_post, 'update' );
+		$post_id       = $this->create_update_employee( $prepared_post );
 
 		if ( is_wp_error( $post_id ) ) {
 			return $post_id;
@@ -354,23 +354,16 @@ class Employees_Controller extends Rest_Controller {
 	 * Create_update_employee
 	 *
 	 * @param object $prepared_post Prepared post object.
-	 * @param string $type Action type.
 	 *
 	 * @return int|\WP_Error
 	 */
-	protected function create_update_employee( $prepared_post, $type = 'create' ) {
+	protected function create_update_employee( $prepared_post ) {
 		$post_id = null;
 
-		if ( 'create' === $type ) {
+		if ( empty( $prepared_post->ID ) ) {
 			$post_id = wp_insert_post( wp_slash( (array) $prepared_post ), true );
-		}
-
-		if ( 'update' === $type ) {
+		} else {
 			$post_id = wp_update_post( wp_slash( (array) $prepared_post ), true );
-		}
-
-		if ( empty( $post_id ) || empty( $type ) ) {
-			return new \WP_Error( 'rest_employee_invalid_type', __( 'Invalid action type.' ), array( 'status' => 500 ) );
 		}
 
 		if ( is_wp_error( $post_id ) ) {
