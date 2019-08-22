@@ -10,6 +10,7 @@ use Boilerplate\Theme\Job\Remove_Revisions;
 use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
+use Boilerplate\Theme\Rest\Employees_Controller;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
 use JustCoded\WP\Framework\ACF\ACF_Support;
 use JustCoded\WP\Framework\Supports\Just_Responsive_Images;
@@ -149,10 +150,17 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	}
 
 	/**
-	 * Register post types
+	 * Register taxonomies
 	 */
 	public function register_taxonomies() {
 		Department::instance();
+	}
+
+	/**
+	 * Register rest endpoint
+	 */
+	public function register_api_endpoints() {
+		Employees_Controller::instance();
 	}
 
 	/**
