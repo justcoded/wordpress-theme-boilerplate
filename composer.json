@@ -28,6 +28,6 @@
   "require": {
     "php": ">=7.0",
 
-    "justcoded/wordpress-theme-framework": "^3.0"
+    "justcoded/wordpress-theme-framework": "^3.1"
   }
 }
