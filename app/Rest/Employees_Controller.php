@@ -351,7 +351,7 @@ class Employees_Controller extends Rest_Controller {
 	}
 
 	/**
-	 * Create_update_employee
+	 * Save employee
 	 *
 	 * @param object $prepared_post Prepared post object.
 	 *
