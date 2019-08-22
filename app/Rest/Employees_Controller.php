@@ -127,7 +127,7 @@ class Employees_Controller extends Rest_Controller {
 	 */
 	public function create_item( $request ) {
 		$prepared_post = $this->prepare_item_for_database( $request );
-		$post_id       = $this->create_update_employee( $prepared_post );
+		$post_id       = $this->save_employee( $prepared_post );
 
 		if ( is_wp_error( $post_id ) ) {
 			return $post_id;
@@ -187,7 +187,7 @@ class Employees_Controller extends Rest_Controller {
 	 */
 	public function update_item( $request ) {
 		$prepared_post = $this->prepare_item_for_database( $request );
-		$post_id       = $this->create_update_employee( $prepared_post );
+		$post_id       = $this->save_employee( $prepared_post );
 
 		if ( is_wp_error( $post_id ) ) {
 			return $post_id;
@@ -357,7 +357,7 @@ class Employees_Controller extends Rest_Controller {
 	 *
 	 * @return int|\WP_Error
 	 */
-	protected function create_update_employee( $prepared_post ) {
+	protected function save_employee( $prepared_post ) {
 		$post_id = null;
 
 		if ( empty( $prepared_post->ID ) ) {
