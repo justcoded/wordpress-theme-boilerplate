@@ -6,7 +6,7 @@ use Boilerplate\Theme\Fields\Employee_Fields;
 use Boilerplate\Theme\Fields\Page_Fields;
 use Boilerplate\Theme\Fields\Theme_Fields;
 use Boilerplate\Theme\Fields\User_Fields;
-use Boilerplate\Theme\Job\Remove_Revisions;
+use Boilerplate\Theme\Jobs\Remove_Revisions;
 use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
