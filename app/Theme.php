@@ -8,9 +8,11 @@ use Boilerplate\Theme\Fields\Theme_Fields;
 use Boilerplate\Theme\Fields\User_Fields;
 use Boilerplate\Theme\Fields\Block_Fields;
 use Boilerplate\Theme\Blocks\Testimonials_Block;
+use Boilerplate\Theme\Jobs\Remove_Revisions;
 use Boilerplate\Theme\Post_Type\Employee;
 use Boilerplate\Theme\Supports\Autoptimize;
 use Boilerplate\Theme\Taxonomy\Department;
+use Boilerplate\Theme\Rest\Employees_Controller;
 use JustCoded\WP\Framework\Supports\Contact_Form7;
 use JustCoded\WP\Framework\ACF\ACF_Support;
 use JustCoded\WP\Framework\Supports\Just_Responsive_Images;
@@ -59,6 +61,18 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	);
 
 	/**
+	 * Disable gutenberg for posts and custom post type.
+	 *
+	 * Set TRUE to disable it totally.
+	 * Set ARRAY to disable only specific ones.
+	 *
+	 * @var array|bool $disable_gutenberg
+	 */
+	public $disable_gutenberg = array(
+		'page',
+	);
+
+	/**
 	 * Additional classes initialize
 	 */
 	public function init() {
@@ -66,6 +80,9 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 			ACF_Support::instance();
 			Theme_Fields::instance();
 		}
+
+		// cron jobs
+		Remove_Revisions::instance();
 	}
 
 	/**
@@ -137,10 +154,17 @@ class Theme extends \JustCoded\WP\Framework\Theme {
 	}
 
 	/**
-	 * Register post types
+	 * Register taxonomies
 	 */
 	public function register_taxonomies() {
 		Department::instance();
+	}
+
+	/**
+	 * Register rest endpoint
+	 */
+	public function register_api_endpoints() {
+		Employees_Controller::instance();
 	}
 
 	/**
