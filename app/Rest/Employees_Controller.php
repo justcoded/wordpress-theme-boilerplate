@@ -3,8 +3,8 @@
 namespace Boilerplate\Theme\Rest;
 
 use JustCoded\WP\Framework\Web\Rest_Controller;
-use TheTimes\Theme\Post_Type\Employee as Employee_Post_Type;
-use TheTimes\Theme\Models\Employee as Employee_Model;
+use Boilerplate\Theme\Post_Type\Employee as Employee_Post_Type;
+use Boilerplate\Theme\Models\Employee as Employee_Model;
 
 /**
  * Custom json rest endpoint to illustrate like it work
