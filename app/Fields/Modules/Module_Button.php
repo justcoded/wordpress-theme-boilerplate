@@ -1,7 +1,7 @@
 <?php
 
 
-namespace JCWP\Theme\Fields\Modules;
+namespace Boilerplate\Theme\Fields\Modules;
 
 use JustCoded\WP\Framework\ACF\ACF_Definition;
 

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace JCWP\Theme\Models;
+namespace Boilerplate\Theme\Models;
 
 /**
  * Class Button
