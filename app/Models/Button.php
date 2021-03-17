@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Boilerplate\Theme\Models;
+namespace JCWP\Theme\Models;
 
 /**
  * Class Button
@@ -34,10 +34,12 @@ class Button {
 	/**
 	 * Get_button
 	 *
-	 * @return array|null
+	 * @param string $type module|page.
+	 *
+	 * @return array
 	 */
-	public static function get_button() {
-		$self         = new self();
+	public static function get_button( $type = 'module' ) {
+		$self         = new self( $type );
 		$self->button = $self->collect();
 
 		return $self->button;
@@ -45,10 +47,12 @@ class Button {
 
 	/**
 	 * Button constructor.
+	 *
+	 * @param $type
 	 */
-	private function __construct() {
+	private function __construct( $type ) {
 		$this->page_id = get_the_ID();
-		$this->fields  = $this->detect();
+		$this->fields  = $this->detect( $type );
 	}
 
 	/**
@@ -63,10 +67,6 @@ class Button {
 			'link'   => '',
 			'target' => '',
 		);
-
-		if ( empty( $this->fields ) || true !== $this->fields['enable'] ) {
-			return $button;
-		}
 
 		$button['title'] = $this->fields['title'];
 
@@ -83,6 +83,11 @@ class Button {
 				$button['target'] = 'target="_blank"';
 				break;
 			case 'anchor':
+				if ( ! empty( $this->fields['anc_link'] ) ) {
+					$button['link'] = get_permalink( $this->fields['anc_link'] ) . '#' . $this->fields['anchor'];
+					break;
+				}
+
 				$button['link'] = '#' . $this->fields['anchor'];
 				break;
 			default:
@@ -95,13 +100,22 @@ class Button {
 	/**
 	 * Detect
 	 *
+	 * @param string $type
+	 *
 	 * @return array|null
 	 */
-	private function detect() {
+	private function detect( $type = 'module' ) {
 		if ( empty( $this->page_id ) || 0 === $this->page_id ) {
 			return null;
 		}
 
-		return get_sub_field( 'button', $this->page_id );
+		switch ( $type ) {
+			case 'module':
+				return get_sub_field( 'button', $this->page_id );
+			case 'page':
+				return get_field( 'button', $this->page_id );
+			default:
+				return null;
+		}
 	}
 }

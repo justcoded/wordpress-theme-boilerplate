@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Boilerplate\Theme\Fields\Modules;
+namespace JCWP\Theme\Fields\Modules;
 
 use JustCoded\WP\Framework\ACF\ACF_Definition;
 
@@ -24,59 +24,80 @@ class Module_Button extends ACF_Definition {
 
 		$this->has(
 			$this->build()
-				->addGroup( 'button' )
-				->addTrueFalse( 'enable', [
-					'label'         => __( 'Enable button', 'jcwp' ),
-					'ui'            => false,
-					'default_value' => 1,
-				] )
-				->addText( 'title' )
-				->addRadio( 'type', [
-					'label'         => __( 'Button link type', 'credicus' ),
-					'layout'        => 'vertical',
-					'other'         => false,
-					'allow_null'    => false,
-					'multiple'      => false,
-					'default_value' => 'internal',
-					'return_format' => 'value',
-				] )
-				->setWidth( '15' )
-				->addChoices( $choices )
-				->addPostObject( 'int_link', [
-					'label'             => __( 'Internal page link', 'credicus' ),
-					'post_type'         => 'page',
-					'post_status'       => 'publish',
-					'allow_null'        => false,
-					'multiple'          => false,
-					'required'          => true,
-					'return_format'     => 'id',
-					'conditional_logic' => [
-						'field'    => 'type',
-						'operator' => '==',
-						'value'    => 'internal',
-					],
-				] )
-				->setWidth( '85' )
-				->addUrl( 'ext_link', [
-					'label'             => __( 'External link', 'credicus' ),
-					'required'          => true,
-					'conditional_logic' => [
-						'field'    => 'type',
-						'operator' => '==',
-						'value'    => 'external',
-					],
-				] )
-				->setWidth( '85' )
-				->addText( 'anchor', [
-					'label'             => __( 'Anchor', 'credicus' ),
-					'conditional_logic' => [
-						'field'    => 'type',
-						'operator' => '==',
-						'value'    => 'anchor',
-					],
-				] )
-				->setWidth( '85' )
-				->endGroup()
+			     ->addTrueFalse( 'button_enabled', [
+				     'label'         => __( 'Enable button', 'default' ),
+				     'ui'            => false,
+				     'default_value' => 1,
+			     ] )
+			     ->setWidth( '10' )
+			     ->addGroup( 'button', [
+				     'conditional_logic' => [
+					     'field'    => 'button_enabled',
+					     'operator' => '==',
+					     'value'    => 1,
+				     ],
+			     ] )
+			     ->setWidth( '90' )
+			     ->addRadio( 'type', [
+				     'label'         => __( 'Button link type', 'default' ),
+				     'layout'        => 'horizontal',
+				     'other'         => false,
+				     'allow_null'    => false,
+				     'multiple'      => false,
+				     'default_value' => 'internal',
+				     'return_format' => 'value',
+			     ] )
+			     ->setWidth( '90' )
+			     ->addChoices( $choices )
+			     ->addText( 'title' )
+			     ->addPostObject( 'int_link', [
+				     'label'             => __( 'Internal page link', 'default' ),
+				     'post_type'         => 'page',
+				     'post_status'       => 'publish',
+				     'allow_null'        => false,
+				     'multiple'          => false,
+				     'required'          => true,
+				     'return_format'     => 'id',
+				     'conditional_logic' => [
+					     'field'    => 'type',
+					     'operator' => '==',
+					     'value'    => 'internal',
+				     ],
+			     ] )
+			     ->addUrl( 'ext_link', [
+				     'label'             => __( 'External link', 'default' ),
+				     'required'          => true,
+				     'conditional_logic' => [
+					     'field'    => 'type',
+					     'operator' => '==',
+					     'value'    => 'external',
+				     ],
+			     ] )
+			     ->addText( 'anchor', [
+				     'label'             => __( 'Anchor', 'default' ),
+				     'conditional_logic' => [
+					     'field'    => 'type',
+					     'operator' => '==',
+					     'value'    => 'anchor',
+				     ],
+			     ] )
+			     ->setWidth( '40' )
+			     ->addPostObject( 'anc_link', [
+				     'label'             => __( 'Anchor page link', 'default' ),
+				     'post_type'         => 'page',
+				     'post_status'       => 'publish',
+				     'allow_null'        => false,
+				     'multiple'          => false,
+				     'required'          => true,
+				     'return_format'     => 'id',
+				     'conditional_logic' => [
+					     'field'    => 'type',
+					     'operator' => '==',
+					     'value'    => 'anchor',
+				     ],
+			     ] )
+			     ->setWidth( '60' )
+			     ->endGroup()
 		);
 	}
 }
